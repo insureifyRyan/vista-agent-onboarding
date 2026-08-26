@@ -70,8 +70,8 @@ step 4 stat tile pick it up.
 Run the one-time setup, then paste the printed keys into `.env`:
 
 ```bash
-PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.ts --dry-run
-PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.ts
+PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.mts --dry-run
+PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.mts
 ```
 
 It creates the **AMS integrations** pipeline

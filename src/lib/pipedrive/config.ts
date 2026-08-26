@@ -1,14 +1,14 @@
 /**
  * Pipedrive wiring.
  *
- * The pipeline and stages are created once, by hand or by scripts/pipedrive-setup.ts:
+ * The pipeline and stages are created once, by hand or by scripts/pipedrive-setup.mts:
  *
  *   Pipeline: "AMS integrations"
  *   Stages:   Waitlisted → Build scheduled → In development → Ready to activate → Activated
  *
  * Custom fields live on Person and are addressed by Pipedrive's hashed field keys,
  * which differ per account — so they come from the environment rather than being
- * hard-coded. `scripts/pipedrive-setup.ts` prints the keys it creates.
+ * hard-coded. `scripts/pipedrive-setup.mts` prints the keys it creates.
  */
 export const PIPELINE_NAME = 'AMS integrations';
 

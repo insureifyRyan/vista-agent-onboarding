@@ -190,7 +190,7 @@ export class PipedriveClient {
       : pipelines?.find((p) => p.name === PIPELINE_NAME);
     if (!pipeline) {
       throw new PipedriveError(
-        `Pipeline "${envPipeline ?? PIPELINE_NAME}" not found — run scripts/pipedrive-setup.ts`,
+        `Pipeline "${envPipeline ?? PIPELINE_NAME}" not found — run scripts/pipedrive-setup.mts`,
         404,
         false,
       );
