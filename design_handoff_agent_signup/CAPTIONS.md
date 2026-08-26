@@ -2,7 +2,7 @@
 
 Boilerplate for every caption (paste as the last block, above hashtags):
 
-> Vehicle service contracts are not insurance; contract obligations are insured by Old Republic Insurance Company Coverage, limits and eligibility are subject to contract terms and exclusions. Producer license verification is required before selling. Available in all states except California. Administered by Ascent Administration, Mesa, AZ. Insureify AI, Inc. DBA Kovara AI.
+> Vehicle service contracts are not insurance; contract obligations are insured by Old Republic Insurance Company. Coverage, limits and eligibility are subject to contract terms and exclusions. Producer license verification is required before selling. Available in all states except California. Administered by Ascent Administration, Mesa, AZ. Insureify AI, Inc. DBA Kovara AI.
 
 Hashtags (rotate 6–8, never in the image):
 `#insuranceagents #independentagent #insuranceagency #vehicleservicecontract #agencygrowth #insurtech #ezlynx #agentlife`

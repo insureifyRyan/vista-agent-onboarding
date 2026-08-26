@@ -5,7 +5,17 @@ Nineteen finished creatives, exported at true pixel size from
 Meta with the destination URL below. No engineering needed to run them; the only
 app-side dependency is UTM capture, which is already live on `/onboarding`.
 
-Regenerate with `node --experimental-strip-types scripts/export-ads.mts`.
+Regenerate with:
+
+```bash
+node --experimental-strip-types scripts/export-ads.mts
+```
+
+It needs a Chromium (`npx playwright install chromium`, or set `CHROMIUM_PATH`
+to one already on disk) and reaches fonts.googleapis.com for Montserrat and
+Source Sans 3. Where that host is unreachable, drop the `.woff2` files into
+`ads/fonts/` and the script uses those instead — without one or the other the
+export falls back to a system face and is not usable.
 
 ## Destination URL
 
@@ -74,19 +84,31 @@ The creative avoids every trigger — no hiring language, no office imagery, no
 income claims. Keep it that way in any new copy; `CAPTIONS.md` has the
 do-not-write list.
 
-## Known issue before upload
+## Compliance
 
-The compliance block on these creatives reads:
+The block on every CTA-bearing frame reads:
 
-> …obligations insured by Old Republic Insurance Company Coverage and eligibility
-> subject to contract terms and exclusions.
+> Insureify AI, Inc. DBA Kovara AI. Vehicle service contracts are not insurance;
+> obligations insured by Old Republic Insurance Company. Coverage and eligibility
+> subject to contract terms and exclusions. License verification required to sell.
+> All states except California. Administered by Ascent Administration, Mesa, AZ.
 
-There is a **missing full stop after "Old Republic Insurance Company"**, which
-runs two sentences together. The onboarding page uses the corrected wording from
-`PROMPT.md`, so the ads and the landing page currently disagree. Pick one
-wording, and if it is the corrected one, fix
-`design_handoff_agent_signup/AgentSignupAds.dc.html` and re-run the export —
-all nineteen regenerate in about a minute.
+This is the same text the onboarding page carries, minus one sentence: the page
+adds *"Eligible-vehicle counts are calculated from your own book at connection."*
+because it displays a count and an ad does not. `tests/compliance.test.ts` asserts
+all seventeen frames carry it verbatim and that it still matches the page, so the
+art and the landing page cannot drift apart.
 
-Legal review is still outstanding on this language either way; confirm the exact
-Old Republic underwriting entity name before spending money against it.
+The three Reels cuts carry the short line instead — *"Vehicle service contracts
+are not insurance. Available in all states except California. Full terms in the
+caption."* — which is why **a Reels cut must never run with a truncated caption**.
+
+### Still open for counsel
+
+The disclosure names an **insurer** (Old Republic) and an **administrator**
+(Ascent) but no **obligor** — the entity actually on the hook for the contract.
+Most VSC disclosure regimes want that named. It is not in the handoff and is not
+something to infer, so it needs an answer from counsel along with confirmation of
+the exact Old Republic underwriting entity name. If a sentence is added, put it in
+`src/lib/compliance.ts` and re-run the export; the page and all nineteen creatives
+update together.

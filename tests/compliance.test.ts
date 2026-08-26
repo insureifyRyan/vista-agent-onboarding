@@ -1,6 +1,15 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { COMPLIANCE_DISCLOSURE, QUALIFIERS } from '@/lib/compliance';
+import {
+  AD_DISCLOSURE,
+  COMPLIANCE_DISCLOSURE,
+  QUALIFIERS,
+  REELS_SHORT_DISCLOSURE,
+} from '@/lib/compliance';
 import { LIVE_PANEL } from '@/lib/ams/copy';
+
+const ADS_HTML = readFileSync('design_handoff_agent_signup/AgentSignupAds.dc.html', 'utf8');
+const CAPTIONS = readFileSync('design_handoff_agent_signup/CAPTIONS.md', 'utf8');
 
 describe('the disclosure block', () => {
   it('is the approved text, unedited', () => {
@@ -32,5 +41,37 @@ describe('claim-specific qualifiers', () => {
     expect(LIVE_PANEL.countDisclosure).toBe(
       'Eligible-vehicle counts are calculated from your own book at connection.',
     );
+  });
+});
+
+describe('the creatives carry the same disclosure as the page', () => {
+  it('puts the ad disclosure on every CTA-bearing frame', () => {
+    // Seventeen frames carry the full block; the three Reels cuts carry the short
+    // line instead, because Reels covers the bottom third with its own chrome.
+    const occurrences = ADS_HTML.split(AD_DISCLOSURE).length - 1;
+    expect(occurrences).toBe(17);
+  });
+
+  it('gives the Reels cuts the short line, which defers to the caption', () => {
+    expect(ADS_HTML).toContain(REELS_SHORT_DISCLOSURE);
+  });
+
+  it('differs from the page version only by the eligible-count qualifier', () => {
+    const qualifier = ' Eligible-vehicle counts are calculated from your own book at connection.';
+    expect(COMPLIANCE_DISCLOSURE.replace(qualifier, '')).toBe(AD_DISCLOSURE);
+  });
+
+  it('leaves no run-on between the obligor and the terms sentence', () => {
+    // The defect this guards: a missing full stop turned "…insured by Old Republic
+    // Insurance Company." and "Coverage and eligibility subject to…" into one
+    // unreadable sentence, across all seventeen frames and the caption boilerplate.
+    for (const source of [ADS_HTML, CAPTIONS]) {
+      expect(source).not.toContain('Insurance Company Coverage');
+    }
+  });
+
+  it('keeps the full boilerplate in the caption file the Reels cuts depend on', () => {
+    expect(CAPTIONS).toContain('Old Republic Insurance Company. Coverage');
+    expect(CAPTIONS).toContain('Available in all states except California');
   });
 });

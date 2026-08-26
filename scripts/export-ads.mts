@@ -8,6 +8,9 @@
  * it holds an empty image slot and is excluded from the launch set until a photo
  * is supplied.
  *
+ * Needs a Chromium: `npx playwright install chromium`, or set CHROMIUM_PATH to
+ * one that is already on disk.
+ *
  * Fonts: the handoff pulls Montserrat and Source Sans 3 from Google Fonts, which
  * is all a normal machine needs. If ads/fonts/ contains the woff2 files, they are
  * injected instead — for building somewhere with no access to fonts.googleapis.com.
@@ -85,7 +88,11 @@ mkdirSync(OUT, { recursive: true });
 const fontCss = localFontCss();
 console.log(fontCss ? 'using local fonts from ads/fonts' : 'using Google Fonts (needs network)');
 
-const browser = await chromium.launch();
+// CHROMIUM_PATH lets this run where a browser is already installed at a known
+// location instead of Playwright's own download (CI images, sandboxes).
+const browser = await chromium.launch({
+  executablePath: process.env.CHROMIUM_PATH || undefined,
+});
 const page = await browser.newPage({ viewport: { width: 1600, height: 1200 }, deviceScaleFactor: 1 });
 
 async function load(): Promise<void> {

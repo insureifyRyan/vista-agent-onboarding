@@ -246,7 +246,7 @@ Every disclosure and trust statement was contrast-audited. Hold the line:
 
 ## Compliance — required on every creative and page
 
-> Insureify AI, Inc. DBA Kovara AI. Vehicle service contracts are not insurance; obligations insured by Old Republic Insurance Company Coverage and eligibility subject to contract terms and exclusions. License verification required to sell. All states except California. Administered by Ascent Administration, Mesa, AZ.
+> Insureify AI, Inc. DBA Kovara AI. Vehicle service contracts are not insurance; obligations insured by Old Republic Insurance Company. Coverage and eligibility subject to contract terms and exclusions. License verification required to sell. All states except California. Administered by Ascent Administration, Mesa, AZ.
 
 Claim-specific qualifiers must sit next to their claim, not in the footer block:
 

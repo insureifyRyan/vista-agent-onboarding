@@ -10,3 +10,6 @@ next-env.d.ts
 data/*.sqlite
 data/*.sqlite-journal
 .DS_Store
+
+# Optional local webfonts for offline ad export — see ads/README.md
+ads/fonts/
