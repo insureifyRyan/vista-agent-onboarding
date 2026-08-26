@@ -18,6 +18,19 @@ npm test
 Without `RESEND_API_KEY` the verification code is printed to the server console,
 so the flow is walkable with no email provider configured.
 
+## The ads
+
+`ads/` holds the nineteen finished creatives at true pixel size, with
+`ads/README.md` carrying the per-frame destination URLs, placements, caption
+mapping, and the Reels/Stories rules. Regenerate them from the handoff with:
+
+```bash
+node --experimental-strip-types scripts/export-ads.mts
+```
+
+P1 is deliberately absent — it holds an empty image slot until a photo is
+supplied.
+
 ## What the ads need from this app
 
 Every creative points at:

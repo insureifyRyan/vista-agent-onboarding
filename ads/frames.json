@@ -1,0 +1,135 @@
+[
+  {
+    "id": "A1",
+    "width": 1080,
+    "height": 1350,
+    "label": "A1 · Speed — 60-second onboarding",
+    "file": "A1.png"
+  },
+  {
+    "id": "A2",
+    "width": 1080,
+    "height": 1350,
+    "label": "A2 · AI selling system inside the AMS",
+    "file": "A2.png"
+  },
+  {
+    "id": "A3",
+    "width": 1080,
+    "height": 1350,
+    "label": "A3 · Dealer markup contrast",
+    "file": "A3.png"
+  },
+  {
+    "id": "A4",
+    "width": 1080,
+    "height": 1350,
+    "label": "A4 · 30-second online checkout",
+    "file": "A4.png"
+  },
+  {
+    "id": "A5",
+    "width": 1080,
+    "height": 1350,
+    "label": "A5 · Coverage & carrier proof",
+    "file": "A5.png"
+  },
+  {
+    "id": "B1",
+    "width": 1080,
+    "height": 1350,
+    "label": "B1 · 60 seconds, cyan ground",
+    "file": "B1.png"
+  },
+  {
+    "id": "B2",
+    "width": 1080,
+    "height": 1350,
+    "label": "B2 · Expand the product suite",
+    "file": "B2.png"
+  },
+  {
+    "id": "B3",
+    "width": 1080,
+    "height": 1350,
+    "label": "B3 · Triple \"no\" stack",
+    "file": "B3.png"
+  },
+  {
+    "id": "B4",
+    "width": 1080,
+    "height": 1350,
+    "label": "B4 · $5K diminished value hero",
+    "file": "B4.png"
+  },
+  {
+    "id": "B5",
+    "width": 1080,
+    "height": 1350,
+    "label": "B5 · Three-step AI flow",
+    "file": "B5.png"
+  },
+  {
+    "id": "S1",
+    "width": 1080,
+    "height": 1080,
+    "label": "S1 · 1:1 · Speed (Ledger)",
+    "file": "S1.png"
+  },
+  {
+    "id": "S2",
+    "width": 1080,
+    "height": 1080,
+    "label": "S2 · 1:1 · Dealer markup (Ledger)",
+    "file": "S2.png"
+  },
+  {
+    "id": "S3",
+    "width": 1080,
+    "height": 1080,
+    "label": "S3 · 1:1 · $5K coverage (Signal)",
+    "file": "S3.png"
+  },
+  {
+    "id": "R1",
+    "width": 1080,
+    "height": 1920,
+    "label": "R1 · 9:16 Stories · Speed (Ledger)",
+    "file": "R1.png"
+  },
+  {
+    "id": "R2",
+    "width": 1080,
+    "height": 1920,
+    "label": "R2 · 9:16 Stories · Dealer markup (Ledger)",
+    "file": "R2.png"
+  },
+  {
+    "id": "R3",
+    "width": 1080,
+    "height": 1920,
+    "label": "R3 · 9:16 Stories · $5K coverage (Signal)",
+    "file": "R3.png"
+  },
+  {
+    "id": "V1",
+    "width": 1080,
+    "height": 1920,
+    "label": "V1 · 9:16 Reels · Speed (Ledger)",
+    "file": "V1.png"
+  },
+  {
+    "id": "V2",
+    "width": 1080,
+    "height": 1920,
+    "label": "V2 · 9:16 Reels · Dealer markup (Ledger)",
+    "file": "V2.png"
+  },
+  {
+    "id": "V3",
+    "width": 1080,
+    "height": 1920,
+    "label": "V3 · 9:16 Reels · $5K coverage (Signal)",
+    "file": "V3.png"
+  }
+]
