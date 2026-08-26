@@ -67,11 +67,23 @@ step 4 stat tile pick it up.
 
 ## Pipedrive
 
+To see what the app expects and what is wired up — no token or network needed:
+
+```bash
+npm run pipedrive:fields
+```
+
+`src/lib/pipedrive/config.ts` is the contract: field name, Pipedrive type, enum
+options, and the environment variable each hashed key goes into. A missing key
+is not fatal — the sync omits that field rather than failing — but the demand
+report needs `ams_name` and `book_size_est` as structured values, so it cannot
+be built from Pipedrive until they exist.
+
 Run the one-time setup, then paste the printed keys into `.env`:
 
 ```bash
-PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.mts --dry-run
-PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.mts
+PIPEDRIVE_API_TOKEN=... npm run pipedrive:setup -- --dry-run
+PIPEDRIVE_API_TOKEN=... npm run pipedrive:setup
 ```
 
 It creates the **AMS integrations** pipeline

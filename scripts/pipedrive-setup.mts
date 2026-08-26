@@ -1,7 +1,7 @@
 /**
  * One-time Pipedrive setup.
  *
- *   PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.ts
+ *   PIPEDRIVE_API_TOKEN=... node --experimental-strip-types scripts/pipedrive-setup.mts
  *
  * Creates the "AMS integrations" pipeline with its five stages and the Person
  * custom fields, then prints the environment variables to copy into .env.
@@ -9,8 +9,7 @@
  * Safe to re-run: it reuses anything already present rather than duplicating it.
  * Pass --dry-run to see what it would do without writing to your account.
  */
-import { AMS_OPTIONS } from '../src/lib/ams/catalog.ts';
-import { PERSON_FIELDS, PIPELINE_NAME, STAGES, type PersonFieldName } from '../src/lib/pipedrive/config.ts';
+import { PERSON_FIELDS, PIPELINE_NAME, STAGES } from '../src/lib/pipedrive/config.ts';
 
 const TOKEN = process.env.PIPEDRIVE_API_TOKEN;
 const BASE = process.env.PIPEDRIVE_BASE_URL ?? 'https://api.pipedrive.com';
@@ -21,12 +20,6 @@ if (!TOKEN) {
   process.exit(1);
 }
 
-const US_STATES = [
-  'AL','AK','AZ','AR','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
-  'MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI',
-  'SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
-  // California is deliberately absent: the product is not available there.
-];
 
 async function api<T>(method: string, path: string, body?: unknown, query: Record<string, string> = {}): Promise<T> {
   const url = new URL(path, BASE);
@@ -41,13 +34,6 @@ async function api<T>(method: string, path: string, body?: unknown, query: Recor
     throw new Error(`${method} ${path} -> ${response.status} ${await response.text().catch(() => '')}`);
   }
   return ((await response.json()) as { data: T }).data;
-}
-
-function enumOptions(name: PersonFieldName): { label: string }[] | undefined {
-  if (name === 'ams_name') return AMS_OPTIONS.map((label) => ({ label }));
-  if (name === 'ams_status') return ['live', 'waitlist', 'none'].map((label) => ({ label }));
-  if (name === 'resident_state') return US_STATES.map((label) => ({ label }));
-  return undefined;
 }
 
 async function ensurePipeline(): Promise<number> {
@@ -97,7 +83,7 @@ async function ensurePersonFields(): Promise<Record<string, string>> {
     const already = existing?.find((field) => field.name === spec.name);
     if (already) {
       console.log(`  field "${name}" already exists (${already.key})`);
-      env[`PIPEDRIVE_FIELD_${name.toUpperCase()}`] = already.key;
+      env[spec.envVar] = already.key;
       continue;
     }
     if (DRY_RUN) {
@@ -107,10 +93,10 @@ async function ensurePersonFields(): Promise<Record<string, string>> {
     const created = await api<{ key: string }>('POST', '/v1/personFields', {
       name: spec.name,
       field_type: spec.field_type,
-      options: enumOptions(name as PersonFieldName),
+      options: 'options' in spec ? spec.options.map((label) => ({ label })) : undefined,
     });
     console.log(`  created field "${name}" (${created.key})`);
-    env[`PIPEDRIVE_FIELD_${name.toUpperCase()}`] = created.key;
+    env[spec.envVar] = created.key;
   }
 
   return env;
