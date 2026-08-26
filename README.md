@@ -67,7 +67,10 @@ step 4 stat tile pick it up.
 
 ## Pipedrive
 
-To see what the app expects and what is wired up — no token or network needed:
+`docs/pipedrive-fields.html` is a printable checklist of all six fields — types,
+options, and which environment variable each one wires into — for working through
+the Pipedrive UI. To see the same spec plus what is currently wired up, with no
+token or network needed:
 
 ```bash
 npm run pipedrive:fields

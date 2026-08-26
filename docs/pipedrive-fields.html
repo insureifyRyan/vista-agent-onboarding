@@ -1,0 +1,528 @@
+<title>AMS Waitlist Field Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground: #F6F8FC;
+    --surface: #FFFFFF;
+    --surface-sunk: #EEF1F8;
+    --ink: #1D254C;
+    --body: #353C54;
+    --muted: #575E7A;
+    --rule: #E0E5F0;
+    --rule-soft: #EAEEF6;
+    /* --accent is for rules and focus rings; --accent-ink is the text-safe pair,
+       and --chip-ink is what reads on --accent-tint. */
+    --accent: #0D8CFF;
+    --accent-ink: #0A66BC;
+    --accent-tint: #E5F2FF;
+    --chip-ink: #0B5390;
+    --wired: #1F9D6B;
+    --wired-tint: #E4F6EE;
+    --todo: #9A6410;
+    --todo-tint: #FBF0DC;
+    --shadow: 0 1px 2px rgba(29, 37, 76, .05), 0 8px 24px rgba(29, 37, 76, .06);
+
+    --display: "Montserrat", "Gotham", system-ui, sans-serif;
+    --text: "Source Sans 3", "Myriad Pro", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0B1024;
+      --surface: #141A38;
+      --surface-sunk: #1B2247;
+      --ink: #EEF1F8;
+      --body: #C3CADF;
+      --muted: #8E97B5;
+      --rule: #2A3260;
+      --rule-soft: #222949;
+      --accent: #12DEFF;
+      --accent-ink: #12DEFF;
+      --accent-tint: #12303F;
+      --chip-ink: #12DEFF;
+      --wired: #46C48D;
+      --wired-tint: #123A2C;
+      --todo: #E0A54A;
+      --todo-tint: #2B2114;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .28);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0B1024;
+    --surface: #141A38;
+    --surface-sunk: #1B2247;
+    --ink: #EEF1F8;
+    --body: #C3CADF;
+    --muted: #8E97B5;
+    --rule: #2A3260;
+    --rule-soft: #222949;
+    --accent: #12DEFF;
+    --accent-ink: #12DEFF;
+    --accent-tint: #12303F;
+    --chip-ink: #12DEFF;
+    --wired: #46C48D;
+    --wired-tint: #123A2C;
+    --todo: #E0A54A;
+    --todo-tint: #2B2114;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .28);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--body);
+    font-family: var(--text);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.25rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  h1, h2, h3 { font-family: var(--display); color: var(--ink); margin: 0; text-wrap: balance; }
+  p { margin: 0; text-wrap: pretty; }
+
+  .eyebrow {
+    font-family: var(--display);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+
+  /* ---------- masthead ---------- */
+  header { display: flex; flex-direction: column; gap: .9rem; }
+  header h1 { font-size: clamp(2rem, 6vw, 2.75rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+  header .lede { font-size: 1.15rem; color: var(--muted); max-width: 34rem; }
+
+  .path {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+    margin-top: .4rem;
+    padding: .85rem 1rem;
+    background: var(--surface-sunk);
+    border-radius: 12px;
+    font-family: var(--mono);
+    font-size: .82rem;
+    color: var(--body);
+  }
+  .path span:nth-child(even) { color: var(--muted); }
+
+  /* ---------- sections ---------- */
+  section { display: flex; flex-direction: column; gap: 1.25rem; }
+  section > h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; }
+  .section-head { display: flex; flex-direction: column; gap: .5rem; }
+  .section-head p { color: var(--muted); font-size: .98rem; }
+
+  /* ---------- stage flow (a real sequence, so it reads as one) ---------- */
+  .stages { display: flex; flex-wrap: wrap; align-items: stretch; gap: .4rem; }
+  .stage {
+    flex: 1 1 7rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: .7rem .8rem;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+  .stage-name { font-family: var(--display); font-weight: 700; font-size: .9rem; color: var(--ink); letter-spacing: -.01em; }
+  .stage-note { font-size: .78rem; color: var(--muted); line-height: 1.35; }
+  .stage:first-child { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+
+  /* ---------- field cards ---------- */
+  .fields { display: flex; flex-direction: column; gap: .85rem; }
+
+  .field {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 1.15rem 1.25rem;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .35rem .85rem;
+    align-items: start;
+  }
+
+  .tick {
+    grid-row: 1 / span 4;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin: .2rem 0 0;
+    accent-color: var(--wired);
+    cursor: pointer;
+    flex: none;
+  }
+  .tick:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .field-top { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+  .field-name {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+
+  .type {
+    font-family: var(--mono);
+    font-size: .72rem;
+    font-weight: 500;
+    padding: .2rem .5rem;
+    border-radius: 999px;
+    background: var(--accent-tint);
+    color: var(--chip-ink);
+    white-space: nowrap;
+  }
+
+  .purpose { font-size: .95rem; color: var(--body); }
+
+  .env {
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--muted);
+    word-break: break-all;
+  }
+  .env b { color: var(--body); font-weight: 500; }
+
+  details { margin-top: .35rem; }
+  summary {
+    cursor: pointer;
+    font-size: .84rem;
+    color: var(--accent-ink);
+    font-weight: 600;
+    width: fit-content;
+  }
+  summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .opts { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .6rem; }
+  .opt {
+    font-family: var(--mono);
+    font-size: .74rem;
+    padding: .18rem .45rem;
+    border-radius: 6px;
+    background: var(--surface-sunk);
+    color: var(--body);
+    white-space: nowrap;
+  }
+  .opt-note { font-size: .82rem; color: var(--muted); margin-top: .55rem; }
+
+  /* ---------- progress ---------- */
+  .progress {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0 -1.25rem;
+    padding: .7rem 1.25rem;
+    background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .bar { flex: 1; height: 5px; border-radius: 999px; background: var(--rule); overflow: hidden; }
+  .bar-fill { height: 100%; width: 0%; background: var(--wired); border-radius: 999px; transition: width .25s ease; }
+  .count { font-family: var(--mono); font-size: .82rem; color: var(--body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---------- code ---------- */
+  pre {
+    margin: 0;
+    background: var(--surface-sunk);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: .84rem;
+    line-height: 1.7;
+    color: var(--body);
+  }
+  pre .c { color: var(--muted); }
+
+  /* ---------- callout ---------- */
+  .callout {
+    border-left: 3px solid var(--todo);
+    background: var(--todo-tint);
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .callout h3 { font-size: 1rem; font-weight: 700; }
+  .callout p { font-size: .93rem; color: var(--body); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    font-size: .84rem;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  footer code { font-family: var(--mono); font-size: .82rem; color: var(--body); }
+
+  @media (max-width: 30rem) {
+    .field { grid-template-columns: 1fr; }
+    .tick { grid-row: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <div class="eyebrow">Pipedrive setup</div>
+    <h1>AMS integration waitlist fields</h1>
+    <p class="lede">
+      Six custom fields on <strong>Person</strong>, plus one pipeline. The onboarding app writes
+      to these by their hashed keys, so they have to exist before any waitlist answer becomes
+      queryable data.
+    </p>
+    <div class="path">
+      <span>Settings</span><span>→</span><span>Company settings</span><span>→</span><span>Data fields</span><span>→</span><span>Person</span>
+    </div>
+  </header>
+
+  <div class="progress">
+    <span class="count" id="count">0 of 6 created</span>
+    <div class="bar"><div class="bar-fill" id="fill"></div></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>First, the pipeline</h2>
+      <p>
+        Name it <strong>AMS integrations</strong>, separate from your agent-signup pipeline — it tracks
+        integration demand, not sales stages. New waitlist deals land in the first stage; the rest are
+        where you move them as an integration gets built.
+      </p>
+    </div>
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-name">Waitlisted</div>
+        <div class="stage-note">Where the app creates every deal</div>
+      </div>
+      <div class="stage">
+        <div class="stage-name">Build scheduled</div>
+        <div class="stage-note">Picked off the demand report</div>
+      </div>
+      <div class="stage">
+        <div class="stage-name">In development</div>
+        <div class="stage-note">Connector being written</div>
+      </div>
+      <div class="stage">
+        <div class="stage-name">Ready to activate</div>
+        <div class="stage-note">Bulk-move here on ship</div>
+      </div>
+      <div class="stage">
+        <div class="stage-name">Activated</div>
+        <div class="stage-note">Migration email sent</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Then the six fields</h2>
+      <p>
+        Create each with exactly the name shown — the setup script matches on it, and a renamed field
+        reads as a missing one. The type in brackets is what Pipedrive calls it in the
+        <em>Add custom field</em> dialog; the mono name beside it is the type the API uses.
+      </p>
+    </div>
+
+    <div class="fields">
+
+      <div class="field">
+        <input class="tick" type="checkbox" data-field="ams_name" aria-label="Mark ams_name as created">
+        <div class="field-top">
+          <span class="field-name">ams_name</span>
+          <span class="type">Single option · enum</span>
+        </div>
+        <p class="purpose">Which platform the agent is waiting on. The demand report groups by this, so it is the one field the whole waitlist depends on.</p>
+        <div class="env">env: <b>PIPEDRIVE_FIELD_AMS_NAME</b></div>
+        <details>
+          <summary>16 options — must match the selector exactly</summary>
+          <div class="opts">
+            <span class="opt">Agency Matrix</span><span class="opt">AMS360</span><span class="opt">Applied CSR24</span><span class="opt">Applied Epic</span><span class="opt">Applied TAM</span><span class="opt">Better Agency</span><span class="opt">BriteCore</span><span class="opt">EZLynx</span><span class="opt">InsurancePro (ITC)</span><span class="opt">Jenesis</span><span class="opt">NowCerts</span><span class="opt">Novidea</span><span class="opt">QQCatalyst</span><span class="opt">Sagitta</span><span class="opt">Veruna</span><span class="opt">Other / spreadsheet</span>
+          </div>
+          <p class="opt-note">Same order as the onboarding dropdown: alphabetical, with <em>Other / spreadsheet</em> last. A mismatch here silently drops the value.</p>
+        </details>
+      </div>
+
+      <div class="field">
+        <input class="tick" type="checkbox" data-field="ams_status" aria-label="Mark ams_status as created">
+        <div class="field-top">
+          <span class="field-name">ams_status</span>
+          <span class="type">Single option · enum</span>
+        </div>
+        <p class="purpose">Which branch they landed in. This is what filters live-integration and spreadsheet agents out of the demand count.</p>
+        <div class="env">env: <b>PIPEDRIVE_FIELD_AMS_STATUS</b></div>
+        <details>
+          <summary>3 options</summary>
+          <div class="opts">
+            <span class="opt">live</span><span class="opt">waitlist</span><span class="opt">none</span>
+          </div>
+          <p class="opt-note">Lowercase, exactly as shown — these are derived values, not display labels.</p>
+        </details>
+      </div>
+
+      <div class="field">
+        <input class="tick" type="checkbox" data-field="npn" aria-label="Mark npn as created">
+        <div class="field-top">
+          <span class="field-name">npn</span>
+          <span class="type">Text · varchar</span>
+        </div>
+        <p class="purpose">National Producer Number, from the licensing step. Ties demand to a verified producer rather than a tire-kicker.</p>
+        <div class="env">env: <b>PIPEDRIVE_FIELD_NPN</b></div>
+      </div>
+
+      <div class="field">
+        <input class="tick" type="checkbox" data-field="resident_state" aria-label="Mark resident_state as created">
+        <div class="field-top">
+          <span class="field-name">resident_state</span>
+          <span class="type">Single option · enum</span>
+        </div>
+        <p class="purpose">From the NIPR/PDB pull at the licensing step.</p>
+        <div class="env">env: <b>PIPEDRIVE_FIELD_RESIDENT_STATE</b></div>
+        <details>
+          <summary>50 options — California deliberately absent</summary>
+          <div class="opts">
+            <span class="opt">AL</span><span class="opt">AK</span><span class="opt">AZ</span><span class="opt">AR</span><span class="opt">CO</span><span class="opt">CT</span><span class="opt">DE</span><span class="opt">FL</span><span class="opt">GA</span><span class="opt">HI</span><span class="opt">ID</span><span class="opt">IL</span><span class="opt">IN</span><span class="opt">IA</span><span class="opt">KS</span><span class="opt">KY</span><span class="opt">LA</span><span class="opt">ME</span><span class="opt">MD</span><span class="opt">MA</span><span class="opt">MI</span><span class="opt">MN</span><span class="opt">MS</span><span class="opt">MO</span><span class="opt">MT</span><span class="opt">NE</span><span class="opt">NV</span><span class="opt">NH</span><span class="opt">NJ</span><span class="opt">NM</span><span class="opt">NY</span><span class="opt">NC</span><span class="opt">ND</span><span class="opt">OH</span><span class="opt">OK</span><span class="opt">OR</span><span class="opt">PA</span><span class="opt">RI</span><span class="opt">SC</span><span class="opt">SD</span><span class="opt">TN</span><span class="opt">TX</span><span class="opt">UT</span><span class="opt">VT</span><span class="opt">VA</span><span class="opt">WA</span><span class="opt">WV</span><span class="opt">WI</span><span class="opt">WY</span><span class="opt">DC</span>
+          </div>
+          <p class="opt-note">49 states plus DC. Vista is not sold in California, so CA is not an option — leaving it in invites a record that can never convert.</p>
+        </details>
+      </div>
+
+      <div class="field">
+        <input class="tick" type="checkbox" data-field="book_size_est" aria-label="Mark book_size_est as created">
+        <div class="field-top">
+          <span class="field-name">book_size_est</span>
+          <span class="type">Numerical · double</span>
+        </div>
+        <p class="purpose">Vehicles represented. This is what turns the list from a signup log into a build plan — 40 agents with 200 vehicles each beats 90 agents with 20.</p>
+        <div class="env">env: <b>PIPEDRIVE_FIELD_BOOK_SIZE_EST</b></div>
+      </div>
+
+      <div class="field">
+        <input class="tick" type="checkbox" data-field="utm_content" aria-label="Mark utm_content as created">
+        <div class="field-top">
+          <span class="field-name">utm_content</span>
+          <span class="type">Text · varchar</span>
+        </div>
+        <p class="purpose">Which of the twenty creatives produced this demand — the frame id, like <span class="opt">B3</span> or <span class="opt">R1</span>.</p>
+        <div class="env">env: <b>PIPEDRIVE_FIELD_UTM_CONTENT</b></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Then wire them up</h2>
+      <p>
+        Pipedrive generates a hashed key per field, and those keys differ per account — which is why
+        they live in the environment rather than in the source. Read each field's key from the API,
+        put it in the variable named on its card, then confirm:
+      </p>
+    </div>
+    <pre><span class="c"># prints all six and marks each wired or missing — no token, no network</span>
+npm run pipedrive:fields</pre>
+    <p style="font-size:.95rem;color:var(--muted)">
+      Or skip the clicking entirely: <code style="font-family:var(--mono);font-size:.85rem;color:var(--body)">npm run pipedrive:setup</code>
+      creates the pipeline, the five stages and all six fields, then prints the keys ready to paste.
+      It needs an API token and network access to <code style="font-family:var(--mono);font-size:.85rem;color:var(--body)">api.pipedrive.com</code>.
+      Add <code style="font-family:var(--mono);font-size:.85rem;color:var(--body)">-- --dry-run</code> to see what it would do first.
+    </p>
+  </section>
+
+  <section>
+    <div class="callout">
+      <h3>What happens until they exist</h3>
+      <p>
+        Nothing breaks. A missing key is omitted from the payload rather than raising, so agents still
+        finish onboarding and waitlist deals still get created — the AMS answer just arrives as text in
+        a note instead of a structured value.
+      </p>
+      <p>
+        What you lose is the report. <span class="opt">ams_name</span> and
+        <span class="opt">book_size_est</span> have to be queryable fields for
+        <em>agents waiting</em> and <em>vehicles represented</em> to be groupable, and that report is
+        the entire reason the waitlist exists — it is what tells you which integration to build next.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>The authoritative spec is <code>src/lib/pipedrive/config.ts</code>, and this page mirrors it by hand. If the two ever disagree, the code is right — or run <code>npm run pipedrive:fields</code>, which prints straight from it.</p>
+    <p>Ticks are stored in this browser only, as a scratchpad for working through the list.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var KEY = 'vista.pipedrive.fields.created';
+    var ticks = Array.prototype.slice.call(document.querySelectorAll('.tick'));
+    var count = document.getElementById('count');
+    var fill = document.getElementById('fill');
+
+    function read() {
+      try {
+        var raw = window.localStorage.getItem(KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function write(state) {
+      try {
+        window.localStorage.setItem(KEY, JSON.stringify(state));
+      } catch (e) {
+        /* private mode, blocked storage — the page works the same without it */
+      }
+    }
+
+    function render() {
+      var done = ticks.filter(function (t) { return t.checked; }).length;
+      count.textContent = done + ' of ' + ticks.length + ' created';
+      fill.style.width = (done / ticks.length * 100) + '%';
+    }
+
+    var state = read();
+    ticks.forEach(function (tick) {
+      tick.checked = state[tick.dataset.field] === true;
+      tick.addEventListener('change', function () {
+        var next = read();
+        next[tick.dataset.field] = tick.checked;
+        write(next);
+        render();
+      });
+    });
+    render();
+  })();
+</script>
