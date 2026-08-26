@@ -1,0 +1,66 @@
+/* ============================================================
+   Vista Warranty — Base element defaults & utilities
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: var(--body-md);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--text-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: var(--cyan-tint); color: var(--vista-navy); }
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Eyebrow label (recurring brand motif) ---- */
+.vista-eyebrow {
+  font: var(--eyebrow);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--vista-blue);
+}
+
+/* ---- Gradient text (logomark colors), use sparingly ---- */
+.vista-gradient-text {
+  background: var(--gradient-mark);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- Button interaction states (components/core/Button) ---- */
+.vw-btn:hover:not(:disabled) { transform: translateY(-1px); }
+.vw-btn:active:not(:disabled) { transform: translateY(0) scale(0.985); }
+.vw-btn--primary:hover:not(:disabled) { background: var(--action-hover) !important; }
+.vw-btn--primary:active:not(:disabled) { background: var(--action-press) !important; }
+.vw-btn--secondary:hover:not(:disabled) { border-color: var(--border-strong) !important; background: var(--surface-subtle) !important; }
+.vw-btn--ghost:hover:not(:disabled) { background: var(--blue-tint) !important; }
+.vw-btn--inverse:hover:not(:disabled) { filter: brightness(0.96); }
+
+/* ---- Card interaction (components/core/Card) ---- */
+.vw-card--interactive { cursor: pointer; }
+.vw-card--interactive:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg) !important; }
+
+/* ---- Form field focus (components/forms) ---- */
+.vw-input:focus { border-color: var(--vista-blue) !important; box-shadow: 0 0 0 3px var(--focus-ring); }
+.vw-input::placeholder { color: var(--neutral-400); }

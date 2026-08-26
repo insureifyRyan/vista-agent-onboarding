@@ -1,0 +1,40 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.boxes {
+  display: flex;
+  gap: 8px;
+}
+
+.box {
+  /* width:100% + min-width:0 is what lets six boxes fit a 375px viewport.
+     Never give these a fixed width. */
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 0;
+  font: var(--fw-bold) 24px/1 var(--font-display);
+  color: var(--text-strong);
+  background: var(--white);
+  transition: box-shadow 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+
+.box:focus {
+  outline: none;
+  border-color: var(--vista-blue);
+  box-shadow: var(--input-focus-ring);
+}
+
+.invalid .box {
+  border-color: var(--danger);
+}
+
+.error {
+  font: var(--fw-semibold) 15px/1.45 var(--font-body);
+  color: var(--danger);
+}

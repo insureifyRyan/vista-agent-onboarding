@@ -1,0 +1,47 @@
+/* ============================================================
+   Vista Warranty — Spacing, radius, shadow, layout tokens
+   ============================================================ */
+:root {
+  /* Spacing scale (4px base) */
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4  */
+  --space-2: 0.5rem;   /* 8  */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+  --space-10: 8rem;    /* 128 */
+
+  /* Radius — modern, soft but not pill-everywhere */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows — cool navy-tinted, soft. No harsh drop shadows. */
+  --shadow-xs:  0 1px 2px rgba(29,37,76,0.06);
+  --shadow-sm:  0 2px 6px rgba(29,37,76,0.07), 0 1px 2px rgba(29,37,76,0.05);
+  --shadow-md:  0 8px 24px rgba(29,37,76,0.10), 0 2px 6px rgba(29,37,76,0.06);
+  --shadow-lg:  0 18px 48px rgba(29,37,76,0.14), 0 4px 12px rgba(29,37,76,0.08);
+  --shadow-glow: 0 8px 28px rgba(13,140,255,0.28); /* on blue CTAs */
+
+  /* Borders */
+  --border-width: 1px;
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-narrow: 760px;
+  --gutter: clamp(1.25rem, 4vw, 4rem); /* @kind spacing */
+
+  /* Motion — calm, confident, no bounce */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast: 130ms; /* @kind other */
+  --dur-base: 220ms; /* @kind other */
+  --dur-slow: 380ms; /* @kind other */
+}

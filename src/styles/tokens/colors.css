@@ -1,0 +1,83 @@
+/* ============================================================
+   Vista Warranty — Color tokens
+   Source: Brand Guidelines v1.3 §10 (Vista Visual Identity)
+   ============================================================ */
+:root {
+  /* ---- Brand core (exact, from brand assets) ---- */
+  --vista-navy:   #1D254C; /* wordmark, headlines, dark backgrounds   */
+  --vista-cyan:   #12DEFF; /* logomark, accents, highlights           */
+  --vista-blue:   #0D8CFF; /* logomark gradient, links, primary CTAs  */
+  --vista-purple: #8F66FF; /* logomark accent only — use sparingly    */
+  --white:        #FFFFFF; /* primary background                      */
+
+  /* ---- Navy ramp (derived from --vista-navy) ---- */
+  --navy-900: #11173A;
+  --navy-800: #1D254C; /* = --vista-navy */
+  --navy-700: #2A3464;
+  --navy-600: #3A4680;
+  --navy-500: #515E9C;
+
+  /* ---- Neutral ramp (cool grays tuned to navy) ---- */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F6F8FC;
+  --neutral-100: #EEF1F8;
+  --neutral-200: #E0E5F0;
+  --neutral-300: #C7CEDF;
+  --neutral-400: #9AA3BC;
+  --neutral-500: #6E778F;
+  --neutral-600: #4E5670;
+  --neutral-700: #353C54;
+  --neutral-800: #232942;
+  --neutral-900: #161B30;
+
+  /* ---- Brand gradient (logomark cyan -> blue -> purple) ---- */
+  --gradient-mark: linear-gradient(120deg, var(--vista-cyan) 0%, var(--vista-blue) 55%, var(--vista-purple) 100%);
+  --gradient-cta:  linear-gradient(120deg, var(--vista-cyan) 0%, var(--vista-blue) 100%);
+
+  /* ---- Tints (for soft fills, badges) ---- */
+  --cyan-tint:   #E4FBFF;
+  --blue-tint:   #E5F2FF;
+  --purple-tint: #F1ECFF;
+
+  /* ---- Semantic status ---- */
+  --success: #1F9D6B;
+  --success-tint: #E4F6EE;
+  --warning: #C9821A;
+  --warning-tint: #FBF0DC;
+  --danger:  #D14343;
+  --danger-tint: #FBE7E7;
+
+  /* ============================================================
+     Semantic aliases — reference these in components
+     ============================================================ */
+  /* Text */
+  --text-strong:   var(--vista-navy);
+  --text-body:     var(--neutral-700);
+  --text-muted:    var(--neutral-500);
+  --text-on-dark:  var(--white);
+  --text-on-dark-muted: #B8C0DC;
+  --text-link:     var(--vista-blue);
+
+  /* Surfaces */
+  --surface-page:    var(--white);
+  --surface-subtle:  var(--neutral-50);
+  --surface-card:    var(--white);
+  --surface-inverse: var(--vista-navy);
+  --surface-inverse-2: var(--navy-900);
+
+  /* Borders */
+  --border-subtle:  var(--neutral-200);
+  --border-default: var(--neutral-300);
+  --border-strong:  var(--neutral-400);
+  --border-on-dark: rgba(255,255,255,0.16);
+
+  /* Interactive (primary = blue CTA) */
+  --action:         var(--vista-blue);
+  --action-hover:   #0A77DB;
+  --action-press:   #0867C0;
+  --action-on:      var(--white);
+
+  /* Accent */
+  --accent:        var(--vista-cyan);
+  --focus-ring:    color-mix(in srgb, var(--vista-blue) 45%, transparent);
+}

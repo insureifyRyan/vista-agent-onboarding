@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Agent Sign-Up Flow (kovara.ai/onboarding)" description="Mirror of the live agent onboarding: email-code sign-up, AMS connect, licensing handoff." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#F6F8FC}input,button{font-family:inherit}input:focus{outline:none;border-color:#0D8CFF!important;box-shadow:0 0 0 4px rgba(13,140,255,0.14)}a{color:#0D8CFF}a:hover{color:#0A77DB}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 18px 56px;font-family:var(--font-body)">
+
+<div style="width:100%;max-width:560px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px">
+<div style="display:inline-flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:18px"><img src="assets/vista-mark.png" alt="Vista" style="height:46px;width:auto"><span style="font:700 38px/0.9 var(--font-display);letter-spacing:-0.025em;color:#1D254C">Vista<sup style="font-size:0.3em;letter-spacing:0;vertical-align:super;font-weight:600">&#8482;</sup></span></div><span style="font:600 9px/1 var(--font-body);letter-spacing:0.24em;text-transform:uppercase;color:rgba(29,37,76,0.72);white-space:nowrap">Vehicle Service Contracts</span></div>
+<span style="font:700 11px/1 var(--font-body);letter-spacing:0.1em;text-transform:uppercase;color:rgba(29,37,76,0.6);border:1.5px solid rgba(29,37,76,0.24);border-radius:999px;padding:8px 12px;white-space:nowrap">Agent-exclusive</span>
+</div>
+
+<div style="width:100%;max-width:560px;display:flex;align-items:center;gap:10px;margin-bottom:22px"><span style="background:#fff;border:1px solid #E4E7EF;border-radius:8px;padding:6px 9px;display:inline-flex"><img src="assets/old-republic-logo.png" alt="Old Republic" style="height:18px;width:auto"></span><span style="font:600 13px/1.2 var(--font-body);color:#4E5670">Fully insured by Old Republic</span><span style="font:400 13px/1.2 var(--font-body);color:#9AA3BC">&#183; Ascent Administration, Mesa AZ</span></div>
+<div style="width:100%;max-width:560px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed #D8DEEB">
+<span style="font:700 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;color:#9AA3BC;margin-right:4px">Preview</span>
+<button type="button" onClick="{{ go1 }}" style="cursor:pointer;background:#fff;border:1px solid #D8DEEB;border-radius:999px;padding:7px 13px;font:600 13px/1 var(--font-body);color:#4E5670">1 Sign-up</button>
+<button type="button" onClick="{{ go2 }}" style="cursor:pointer;background:#fff;border:1px solid #D8DEEB;border-radius:999px;padding:7px 13px;font:600 13px/1 var(--font-body);color:#4E5670">2 Verify</button>
+<button type="button" onClick="{{ go3 }}" style="cursor:pointer;background:#fff;border:1px solid #D8DEEB;border-radius:999px;padding:7px 13px;font:600 13px/1 var(--font-body);color:#4E5670">3 AMS &amp; waitlist</button>
+<button type="button" onClick="{{ go4 }}" style="cursor:pointer;background:#fff;border:1px solid #D8DEEB;border-radius:999px;padding:7px 13px;font:600 13px/1 var(--font-body);color:#4E5670">4 Done</button>
+</div>
+<div style="width:100%;max-width:560px;display:flex;gap:12px;margin-bottom:34px">
+<sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}"><span style="display:flex;gap:12px;flex:1"><span style="flex:1;height:5px;border-radius:999px;background:#1D254C"></span><span style="flex:1;height:5px;border-radius:999px;background:#E4E7EF"></span><span style="flex:1;height:5px;border-radius:999px;background:#E4E7EF"></span></span></sc-if>
+<sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}"><span style="display:flex;gap:12px;flex:1"><span style="flex:1;height:5px;border-radius:999px;background:#1D254C"></span><span style="flex:1;height:5px;border-radius:999px;background:#1D254C"></span><span style="flex:1;height:5px;border-radius:999px;background:#E4E7EF"></span></span></sc-if>
+<sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}"><span style="display:flex;gap:12px;flex:1"><span style="flex:1;height:5px;border-radius:999px;background:#1D254C"></span><span style="flex:1;height:5px;border-radius:999px;background:#1D254C"></span><span style="flex:1;height:5px;border-radius:999px;background:#1D254C"></span></span></sc-if>
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}"><span style="display:flex;gap:12px;flex:1"><span style="flex:1;height:5px;border-radius:999px;background:#1F9D6B"></span><span style="flex:1;height:5px;border-radius:999px;background:#1F9D6B"></span><span style="flex:1;height:5px;border-radius:999px;background:#1F9D6B"></span></span></sc-if>
+</div>
+
+<div style="width:100%;max-width:560px">
+
+<sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="font:700 15px/1 var(--font-display);letter-spacing:0.14em;text-transform:uppercase;color:#0D8CFF;margin-bottom:18px">Agent sign-up</div>
+<h1 style="font:800 42px/1.06 var(--font-display);letter-spacing:-0.03em;color:#1D254C;margin:0">Get started in seconds</h1>
+<p style="font:400 18px/1.55 var(--font-body);color:#6E778F;margin:14px 0 34px">No password required. We'll email you a quick verification code.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px">
+<label style="display:flex;flex-direction:column;gap:9px"><span style="font:700 15px/1 var(--font-body);color:#1D254C">First name</span><input type="text" placeholder="Jordan" style="border:1px solid #E0E5F0;border-radius:14px;padding:17px 18px;font:400 18px/1.2 var(--font-body);color:#1D254C;background:#fff;transition:box-shadow 160ms,border-color 160ms"></label>
+<label style="display:flex;flex-direction:column;gap:9px"><span style="font:700 15px/1 var(--font-body);color:#1D254C">Last name</span><input type="text" placeholder="Reyes" style="border:1px solid #E0E5F0;border-radius:14px;padding:17px 18px;font:400 18px/1.2 var(--font-body);color:#1D254C;background:#fff;transition:box-shadow 160ms,border-color 160ms"></label>
+<label style="grid-column:span 2;display:flex;flex-direction:column;gap:9px;margin-top:6px"><span style="font:700 15px/1 var(--font-body);color:#1D254C">Work email</span><input type="email" placeholder="you@agency.com" style="border:1px solid #E0E5F0;border-radius:14px;padding:17px 18px;font:400 18px/1.2 var(--font-body);color:#1D254C;background:#fff;transition:box-shadow 160ms,border-color 160ms"></label>
+</div>
+<button type="button" onClick="{{ next }}" style="margin-top:28px;width:100%;border:none;cursor:pointer;background:#1D254C;color:#fff;font:700 19px/1 var(--font-display);padding:22px 28px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:background 160ms" style-hover="background:#2A3464">Send verification code<span style="font:700 19px/1">&#8594;</span></button>
+<p style="font:400 16px/1.5 var(--font-body);color:#6E778F;margin:22px 0 0;text-align:center">Already have an account? <b style="color:#1D254C">Sign in</b></p>
+</div>
+</sc-if>
+
+<sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font:700 15px/1 var(--font-display);letter-spacing:0.14em;text-transform:uppercase;color:#0D8CFF;margin-bottom:18px">Verify email</div>
+<h1 style="font:800 42px/1.06 var(--font-display);letter-spacing:-0.03em;color:#1D254C;margin:0">Check your inbox</h1>
+<p style="font:400 18px/1.55 var(--font-body);color:#6E778F;margin:14px 0 34px">We sent a six-digit code to your work email. It expires in ten minutes.</p>
+<div onInput="{{ onCode }}" onPaste="{{ onCodePaste }}" style="display:flex;gap:8px">
+<input type="text" inputmode="numeric" maxlength="1" style="width:100%;min-width:0;text-align:center;border:1px solid #E0E5F0;border-radius:14px;padding:16px 0;font:700 24px/1 var(--font-display);color:#1D254C;background:#fff">
+<input type="text" inputmode="numeric" maxlength="1" style="width:100%;min-width:0;text-align:center;border:1px solid #E0E5F0;border-radius:14px;padding:16px 0;font:700 24px/1 var(--font-display);color:#1D254C;background:#fff">
+<input type="text" inputmode="numeric" maxlength="1" style="width:100%;min-width:0;text-align:center;border:1px solid #E0E5F0;border-radius:14px;padding:16px 0;font:700 24px/1 var(--font-display);color:#1D254C;background:#fff">
+<input type="text" inputmode="numeric" maxlength="1" style="width:100%;min-width:0;text-align:center;border:1px solid #E0E5F0;border-radius:14px;padding:16px 0;font:700 24px/1 var(--font-display);color:#1D254C;background:#fff">
+<input type="text" inputmode="numeric" maxlength="1" style="width:100%;min-width:0;text-align:center;border:1px solid #E0E5F0;border-radius:14px;padding:16px 0;font:700 24px/1 var(--font-display);color:#1D254C;background:#fff">
+<input type="text" inputmode="numeric" maxlength="1" style="width:100%;min-width:0;text-align:center;border:1px solid #E0E5F0;border-radius:14px;padding:16px 0;font:700 24px/1 var(--font-display);color:#1D254C;background:#fff">
+</div>
+<button type="button" onClick="{{ next }}" style="margin-top:28px;width:100%;border:none;cursor:pointer;background:#1D254C;color:#fff;font:700 19px/1 var(--font-display);padding:22px 28px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:background 160ms" style-hover="background:#2A3464">Verify and continue<span style="font:700 19px/1">&#8594;</span></button>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px">
+<button type="button" onClick="{{ back }}" style="cursor:pointer;background:none;border:none;padding:0;font:600 16px/1.4 var(--font-body);color:#6E778F">&#8592; Change email</button>
+<span style="font:400 16px/1.4 var(--font-body);color:#6E778F">Didn't get it? <b style="color:#1D254C">Resend</b></span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font:700 15px/1 var(--font-display);letter-spacing:0.14em;text-transform:uppercase;color:#0D8CFF;margin-bottom:18px">Connect your book</div>
+<h1 style="font:800 42px/1.06 var(--font-display);letter-spacing:-0.03em;color:#1D254C;margin:0">Connect your AMS</h1>
+<p style="font:400 18px/1.55 var(--font-body);color:#6E778F;margin:14px 0 30px">This is the part that does the selling. Vista reads eligible vehicles from your book and prices coverage for them.</p>
+<label style="display:flex;flex-direction:column;gap:9px"><span style="font:700 15px/1 var(--font-body);color:#1D254C">Which agency management system do you run?</span><select value="{{ amsValue }}" onChange="{{ onAms }}" style="border:1px solid #E0E5F0;border-radius:14px;padding:17px 18px;font:400 18px/1.2 var(--font-body);color:#1D254C;background:#fff"><option>Select your AMS</option><option>AMS360</option><option>Agency Matrix</option><option>Applied CSR24</option><option>Applied Epic</option><option>Applied TAM</option><option>Better Agency</option><option>BriteCore</option><option>EZLynx</option><option>HawkSoft</option><option>InsurancePro (ITC)</option><option>Jenesis</option><option>Novidea</option><option>NowCerts</option><option>Other / spreadsheet</option><option>QQCatalyst</option><option>Sagitta</option><option>Veruna</option></select></label>
+<sc-if value="{{ amsLive }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:14px;align-items:flex-start;background:#E4F6EE;border-radius:16px;padding:20px;margin-top:18px">
+<span style="flex:none;width:24px;height:24px;border-radius:999px;background:#1F9D6B;color:#fff;font:700 13px/24px var(--font-body);text-align:center">&#10003;</span>
+<div><div style="font:700 17px/1.3 var(--font-body);color:#14603F">{{ amsName }} is live today</div><div style="font:400 15px/1.45 var(--font-body);color:#166B4B;margin-top:4px">Read-only sync. Vista reads eligible vehicles and never writes to your book.</div><div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(31,157,107,0.28);font:600 16px/1.4 var(--font-body);color:#166B4B">Vista counts the eligible vehicles in your book the moment you connect, and prices coverage for each one.</div></div>
+</div>
+</sc-if>
+<sc-if value="{{ amsWait }}" hint-placeholder-val="{{ false }}">
+<div style="border:1px solid #E0E5F0;border-radius:16px;padding:22px;margin-top:18px;background:#fff">
+<div style="font:700 12px/1 var(--font-display);letter-spacing:0.14em;text-transform:uppercase;color:#96600F;margin-bottom:10px">Integration waitlist</div>
+<div style="font:700 20px/1.3 var(--font-display);color:#1D254C">{{ amsName }} is next in line, not next month</div>
+<p style="font:400 16px/1.5 var(--font-body);color:#6E778F;margin:9px 0 0">We build integrations in the order agents ask for them. Join the list and you can still sell today &mdash; you enter the vehicle once instead of it being read from your book, and we migrate you the day {{ amsName }} goes live.</p>
+</div>
+</sc-if>
+<sc-if value="{{ amsOther }}" hint-placeholder-val="{{ false }}">
+<div style="border:1px solid #E0E5F0;border-radius:16px;padding:22px;margin-top:18px;background:#fff">
+<div style="font:700 12px/1 var(--font-display);letter-spacing:0.14em;text-transform:uppercase;color:#0D8CFF;margin-bottom:10px">Manual entry</div>
+<div style="font:700 20px/1.3 var(--font-display);color:#1D254C">No AMS needed to sell</div>
+<p style="font:400 16px/1.5 var(--font-body);color:#6E778F;margin:9px 0 0">You enter the vehicle details once at quote time instead of Vista reading them from a book. Everything after that &mdash; pricing, the client&#8217;s online checkout, claims &mdash; works exactly the same.</p>
+</div>
+</sc-if>
+<sc-if value="{{ amsNone }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:12px;background:#EEF1F8;border-radius:14px;padding:15px 18px;margin-top:18px">
+<span style="flex:none;width:22px;height:22px;border-radius:999px;background:#E4F6EE;color:#1F9D6B;font:700 12px/22px var(--font-body);text-align:center">&#10003;</span>
+<span style="font:400 15px/1.4 var(--font-body);color:#4E5670">Live today for EZLynx and supported Applied Systems platforms. Everything else joins the integration waitlist and can still sell.</span>
+</div>
+</sc-if>
+<sc-if value="{{ amsNone }}" hint-placeholder-val="{{ true }}"><button type="button" disabled="true" style="margin-top:26px;width:100%;border:none;cursor:not-allowed;background:#C7CEDF;color:#fff;font:700 19px/1 var(--font-display);padding:22px 28px;border-radius:14px">Select your AMS to continue</button></sc-if>
+<sc-if value="{{ amsChosen }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ next }}" style="margin-top:26px;width:100%;border:none;cursor:pointer;background:#1D254C;color:#fff;font:700 19px/1 var(--font-display);padding:22px 28px;border-radius:14px;transition:background 160ms" style-hover="background:#2A3464">{{ connectLabel }}</button></sc-if>
+<button type="button" onClick="{{ back }}" style="margin-top:16px;width:100%;cursor:pointer;background:none;border:none;padding:0;font:600 16px/1.4 var(--font-body);color:#6E778F">&#8592; Back</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="display:inline-flex;align-items:center;gap:10px;background:#E4F6EE;border-radius:999px;padding:9px 16px;margin-bottom:22px">
+<span style="width:20px;height:20px;border-radius:999px;background:#1F9D6B;color:#fff;font:700 11px/20px var(--font-body);text-align:center">&#10003;</span>
+<span style="font:700 14px/1 var(--font-body);color:#166B4B">Account created</span>
+</div>
+<h1 style="font:800 44px/1.04 var(--font-display);letter-spacing:-0.03em;color:#1D254C;margin:0">You're in.</h1>
+<p style="font:400 18px/1.55 var(--font-body);color:#6E778F;margin:14px 0 30px">{{ connectedLine }} One step left before you can issue contracts.</p>
+<div style="border:1px solid #E0E5F0;border-radius:18px;padding:24px;background:#fff">
+<div style="font:700 12px/1 var(--font-display);letter-spacing:0.14em;text-transform:uppercase;color:#0D8CFF;margin-bottom:12px">Next: licensing</div>
+<div style="font:700 22px/1.25 var(--font-display);color:#1D254C">Verify your license with your NPN</div>
+<p style="font:400 16px/1.5 var(--font-body);color:#6E778F;margin:10px 0 18px">Enter your National Producer Number once and we pull your resident license, lines of authority and appointed states from the national producer database — no documents to upload.</p>
+<button type="button" style="width:100%;border:none;cursor:pointer;background:linear-gradient(120deg,#12DEFF 0%,#0D8CFF 100%);color:#0B1024;font:800 18px/1 var(--font-display);padding:19px 26px;border-radius:12px">Go to licensing &#8594;</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px">
+<div style="border:1px solid #E0E5F0;border-radius:16px;padding:18px;background:#fff"><div style="font:800 26px/1 var(--font-display);letter-spacing:-0.02em;color:#0D8CFF">Live</div><div style="font:400 14px/1.35 var(--font-body);color:#6E778F;margin-top:6px">Eligible-vehicle count from your book</div></div>
+<div style="border:1px solid #E0E5F0;border-radius:16px;padding:18px;background:#fff"><div style="font:800 26px/1 var(--font-display);letter-spacing:-0.02em;color:#0D8CFF">$5,000</div><div style="font:400 14px/1.35 var(--font-body);color:#6E778F;margin-top:6px">Diminished value per contract</div></div>
+<div style="border:1px solid #E0E5F0;border-radius:16px;padding:18px;background:#fff"><div style="font:800 26px/1 var(--font-display);letter-spacing:-0.02em;color:#0D8CFF">0</div><div style="font:400 14px/1.35 var(--font-body);color:#6E778F;margin-top:6px">Appointments required</div></div>
+</div>
+<button type="button" onClick="{{ restart }}" style="margin-top:20px;width:100%;cursor:pointer;background:none;border:none;padding:0;font:600 16px/1.4 var(--font-body);color:#6E778F">Replay flow</button>
+</div>
+</sc-if>
+
+</div>
+
+<div style="width:100%;max-width:560px;margin-top:52px;padding-top:26px;border-top:1px solid #E4E7EF;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px">
+<span style="background:#fff;border:1px solid #E4E7EF;border-radius:8px;padding:7px 10px;display:inline-flex"><img src="assets/old-republic-logo.png" alt="Old Republic" style="height:20px;width:auto"></span>
+<span style="font:600 14px/1.2 var(--font-body);color:#4E5670">Fully insured by Old Republic</span>
+</div>
+<div style="font:400 14px/1.5 var(--font-body);color:#4E5670">Insureify AI, Inc. DBA Kovara AI. Vehicle service contracts are not insurance; contract obligations are insured by Old Republic Insurance Company Coverage, limits and eligibility are subject to contract terms and exclusions. Producer license verification required before selling. Available in all states except California. Administered by Ascent Administration, Mesa, AZ.</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+const LIVE_AMS = ['EZLynx','Applied Epic','Applied TAM','Applied CSR24'];
+const NO_AMS = 'Other / spreadsheet';
+class Component extends DCLogic {
+  state = { step: 1, amsName: '' };
+  go(step) { this.setState({ step }); }
+  renderVals() {
+    const { step, amsName } = this.state;
+    const chosen = amsName && amsName !== 'Select your AMS';
+    const other = chosen && amsName === NO_AMS;
+    const live = chosen && LIVE_AMS.indexOf(amsName) !== -1;
+    const wait = chosen && !live && !other;
+    return {
+      isStep1: step === 1, isStep2: step === 2, isStep3: step === 3, isDone: step === 4,
+      amsName: chosen ? amsName : 'Your AMS',
+      amsValue: amsName || 'Select your AMS',
+      amsLive: live, amsWait: wait, amsOther: other, amsNone: !chosen, amsChosen: !!chosen,
+      onAms: (e) => this.setState({ amsName: e.target.value }),
+      connectLabel: other
+        ? 'Continue \u2192'
+        : (live ? 'Connect ' + amsName + ' \u2192' : 'Join the ' + amsName + ' waitlist \u2192'),
+      connectedLine: other
+        ? 'Your agent account is live and you can quote with manual vehicle entry.'
+        : (live
+          ? 'Vista is synced with ' + amsName + ' and your agent account is live.'
+          : 'Your agent account is live and you are first in line for the ' + amsName + ' integration.'),
+      onCode: (e) => {
+        const box = e.currentTarget, el = e.target;
+        if (el.tagName !== 'INPUT' || !el.value) return;
+        const all = [].slice.call(box.querySelectorAll('input'));
+        const i = all.indexOf(el);
+        if (i > -1 && i < all.length - 1) all[i + 1].focus();
+      },
+      onCodePaste: (e) => {
+        const digits = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+        if (!digits) return;
+        e.preventDefault();
+        const all = [].slice.call(e.currentTarget.querySelectorAll('input'));
+        all.forEach((input, i) => { input.value = digits[i] || ''; });
+        all[Math.min(digits.length, all.length) - 1].focus();
+      },
+      go1: () => this.go(1), go2: () => this.go(2), go3: () => this.go(3), go4: () => this.go(4),
+      next: () => this.go(Math.min(4, step + 1)),
+      back: () => this.go(Math.max(1, step - 1)),
+      restart: () => this.setState({ step: 1, amsName: '' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

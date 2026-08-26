@@ -1,0 +1,165 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 18px 56px;
+}
+
+.band {
+  width: 100%;
+  max-width: var(--onboarding-measure);
+}
+
+/* ---- lockup row ---- */
+.masthead {
+  composes: band;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.lockup {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lockupRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.mark {
+  height: 46px;
+  width: auto;
+}
+
+.wordmark {
+  font: var(--fw-bold) 38px/0.9 var(--font-display);
+  letter-spacing: -0.025em;
+  color: var(--text-strong);
+}
+
+.trademark {
+  font-size: 0.3em;
+  letter-spacing: 0;
+  vertical-align: super;
+  font-weight: var(--fw-semibold);
+}
+
+/* Tracking is tuned so the subline measures flush with mark + wordmark above it. */
+.subline {
+  font: var(--fw-semibold) 9px/1 var(--font-body);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(29, 37, 76, 0.72);
+  white-space: nowrap;
+}
+
+.pill {
+  font: var(--fw-bold) 11px/1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(29, 37, 76, 0.6);
+  border: 1.5px solid rgba(29, 37, 76, 0.24);
+  border-radius: var(--radius-pill);
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+/* ---- trust row ---- */
+.trust {
+  composes: band;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.chip {
+  background: var(--white);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 6px 9px;
+  display: inline-flex;
+}
+
+.chipLogo {
+  height: 18px;
+  width: auto;
+}
+
+.trustStrong {
+  font: var(--fw-semibold) 13px/1.2 var(--font-body);
+  color: var(--text-body);
+}
+
+/* The administrator attribution is a trust statement, so it holds the same
+   >=4.5:1 line as the disclosure (10.3:1 here). The design's --neutral-400 came
+   in at 2.4:1; weight, not colour, is what keeps this line secondary. */
+.trustMuted {
+  font: var(--fw-regular) 13px/1.2 var(--font-body);
+  color: var(--text-body);
+}
+
+/* ---- progress ---- */
+.progress {
+  composes: band;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.segment {
+  flex: 1;
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: var(--border-subtle);
+}
+.segmentDone { background: var(--vista-navy); }
+.segmentComplete { background: var(--success); }
+
+/* ---- content ---- */
+.content {
+  composes: band;
+}
+
+/* ---- footer ---- */
+.footer {
+  composes: band;
+  margin-top: 52px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footerTrust {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerChipLogo {
+  height: 20px;
+  width: auto;
+}
+
+.footerTrustText {
+  font: var(--fw-semibold) 14px/1.2 var(--font-body);
+  color: var(--text-body);
+}
+
+/* Deliberately at --text-body, not --text-muted: the disclosure must never be
+   the lowest-contrast text on the surface. 8.9:1 on --neutral-50. */
+.disclosure {
+  font: var(--fw-regular) 14px/1.5 var(--font-body);
+  color: var(--text-body);
+}

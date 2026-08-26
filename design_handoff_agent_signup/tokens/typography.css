@@ -1,0 +1,48 @@
+/* ============================================================
+   Vista Warranty — Typography tokens
+   Headlines: Gotham Bold  -> Montserrat (substitute)
+   Body:      Myriad Pro   -> Source Sans 3 (substitute)
+   Accent:    Libre Franklin Medium Italic (exact)
+   ============================================================ */
+:root {
+  /* Families */
+  --font-display: 'Montserrat', 'Gotham', system-ui, sans-serif;
+  --font-body:    'Source Sans 3', 'Myriad Pro', system-ui, sans-serif;
+  --font-accent:  'Libre Franklin', 'Source Sans 3', serif;
+
+  /* Weights */
+  --fw-regular: 400;  /* @kind other */
+  --fw-medium:  500;  /* @kind other */
+  --fw-semibold:600;  /* @kind other */
+  --fw-bold:    700;  /* @kind other */
+  --fw-extra:   800;  /* @kind other */
+  --fw-black:   900;  /* @kind other */
+
+  /* Display type scale (Montserrat / headlines) */
+  --display-2xl: 700 clamp(3rem, 6vw, 5rem)/1.02 var(--font-display);   /* hero */
+  --display-xl:  800 clamp(2.5rem, 4.5vw, 3.75rem)/1.05 var(--font-display);
+  --display-lg:  800 2.5rem/1.08 var(--font-display);
+  --display-md:  700 2rem/1.12 var(--font-display);
+  --display-sm:  700 1.5rem/1.18 var(--font-display);
+
+  /* Heading / eyebrow */
+  --heading-md:  700 1.25rem/1.3 var(--font-display);
+  --heading-sm:  700 1.0625rem/1.35 var(--font-display);
+  --eyebrow:     700 0.8125rem/1 var(--font-display);
+  --eyebrow-tracking: 0.14em;
+
+  /* Body (Source Sans 3) */
+  --body-lg:   400 1.1875rem/1.6 var(--font-body);
+  --body-md:   400 1.0625rem/1.6 var(--font-body);
+  --body-sm:   400 0.9375rem/1.55 var(--font-body);
+  --label:     600 0.875rem/1.2 var(--font-body);
+  --caption:   400 0.8125rem/1.4 var(--font-body);
+
+  /* Accent italic callout (Libre Franklin) */
+  --accent-quote: italic 500 clamp(1.25rem, 2vw, 1.625rem)/1.4 var(--font-accent);
+
+  /* Tracking */
+  --tracking-tight: -0.02em;
+  --tracking-snug:  -0.01em;
+  --tracking-wide:   0.04em;
+}

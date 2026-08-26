@@ -1,0 +1,16 @@
+/* ============================================================
+   Vista Warranty — Webfonts
+   ------------------------------------------------------------
+   BRAND FONTS (licensed, not bundled here):
+     • Headlines: Gotham Bold
+     • Body:      Myriad Pro / Myriad Variable
+     • Accent:    Libre Franklin Medium Italic
+   SUBSTITUTES (Google Fonts, used below until licensed files ship):
+     • Gotham   -> Montserrat (geometric sans, closest free match)
+     • Myriad   -> Source Sans 3 (Adobe humanist sans, near-identical metrics)
+     • Libre Franklin is itself on Google Fonts (exact)
+   To go production: self-host the licensed Gotham + Myriad files and
+   swap the @font-face src targets below; keep the family names.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Libre+Franklin:ital,wght@0,500;0,600;1,500&display=swap');

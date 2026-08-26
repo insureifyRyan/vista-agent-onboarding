@@ -1,0 +1,51 @@
+.button {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 22px 28px;
+  font: var(--fw-bold) 19px/1 var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.primary {
+  background: var(--vista-navy);
+  color: var(--white);
+}
+.primary:hover:not(:disabled) { background: var(--navy-hover); }
+
+.gradient {
+  /* Dark ink on the gradient ground: inheriting white would put the label
+     below 4.5:1 against the cyan end. */
+  background: var(--gradient-cta);
+  color: var(--navy-deep);
+  font: var(--fw-extra) 18px/1 var(--font-display);
+  padding: 19px 26px;
+  border-radius: 12px;
+}
+
+.button:disabled {
+  background: var(--disabled-bg);
+  color: var(--white);
+  cursor: not-allowed;
+}
+
+.quiet {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  font: var(--fw-semibold) 16px/1.4 var(--font-body);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.quiet:hover { color: var(--text-strong); }
+.quiet:disabled { color: var(--neutral-400); cursor: not-allowed; }
+
+.inline {
+  width: auto;
+}

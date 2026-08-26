@@ -1,0 +1,28 @@
+/* ============================================================
+   Vista Warranty — semantic tokens the onboarding flow adds
+   Colours taken from the approved design; named here so no
+   component carries a raw hex.
+   ============================================================ */
+:root {
+  /* Success panel inks (green panel, step 3 live branch) */
+  --success-ink-strong: #14603F; /* panel title  */
+  --success-ink:        #166B4B; /* panel body   */
+  --success-rule:       rgba(31, 157, 107, 0.28);
+
+  /* Integration-waitlist eyebrow */
+  --waitlist-ink: #96600F;
+
+  /* Deepest navy — the ad grounds; used here for ink on the CTA gradient */
+  --navy-deep: #0B1024;
+
+  /* Interaction */
+  --navy-hover:    var(--navy-700);
+  --input-focus-ring: 0 0 0 4px rgba(13, 140, 255, 0.14);
+  --disabled-bg:   var(--neutral-300);
+
+  /* The flow sits on the light page surface, not white */
+  --onboarding-bg: var(--neutral-50);
+
+  /* Single-column measure for the whole flow */
+  --onboarding-measure: 560px;
+}

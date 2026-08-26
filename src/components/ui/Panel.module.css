@@ -1,0 +1,139 @@
+.panel {
+  margin-top: 18px;
+  border-radius: 16px;
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--border-subtle);
+}
+
+.eyebrow {
+  font: var(--fw-bold) 12px/1 var(--font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.eyebrowWaitlist { color: var(--waitlist-ink); }
+.eyebrowManual { color: var(--vista-blue); }
+
+.title {
+  font: var(--fw-bold) 20px/1.3 var(--font-display);
+  color: var(--text-strong);
+}
+
+.body {
+  font: var(--fw-regular) 16px/1.5 var(--font-body);
+  color: var(--text-muted);
+  margin: 9px 0 0;
+}
+
+/* ---- live-integration panel ---- */
+.success {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--success-tint);
+  border: none;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.check {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--success);
+  color: var(--white);
+  font: var(--fw-bold) 13px/24px var(--font-body);
+  text-align: center;
+}
+
+.successTitle {
+  font: var(--fw-bold) 17px/1.3 var(--font-body);
+  color: var(--success-ink-strong);
+}
+
+.successBody {
+  font: var(--fw-regular) 15px/1.45 var(--font-body);
+  color: var(--success-ink);
+  margin-top: 4px;
+}
+
+.successPromise {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--success-rule);
+  font: var(--fw-semibold) 16px/1.4 var(--font-body);
+  color: var(--success-ink);
+}
+
+.countRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.count {
+  font: var(--fw-extra) 32px/1 var(--font-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--success-ink-strong);
+}
+
+.countLabel {
+  font: var(--fw-semibold) 15px/1.4 var(--font-body);
+  color: var(--success-ink);
+}
+
+/* Skeleton shown while the count loads. Never a sample figure. */
+.skeleton {
+  width: 96px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, rgba(31,157,107,0.16), rgba(31,157,107,0.28), rgba(31,157,107,0.16));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s var(--ease-in-out) infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
+.disclosure {
+  margin-top: 10px;
+  font: var(--fw-regular) 14px/1.45 var(--font-body);
+  color: var(--success-ink);
+}
+
+/* ---- neutral hint shown before an answer is picked ---- */
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--neutral-100);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 15px 18px;
+  margin-top: 18px;
+}
+
+.hintCheck {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--success-tint);
+  color: var(--success);
+  font: var(--fw-bold) 12px/22px var(--font-body);
+  text-align: center;
+}
+
+.hintText {
+  font: var(--fw-regular) 15px/1.4 var(--font-body);
+  color: var(--text-body);
+}

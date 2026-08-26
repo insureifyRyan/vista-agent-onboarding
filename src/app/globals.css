@@ -1,0 +1,21 @@
+@import '../styles/tokens/colors.css';
+@import '../styles/tokens/typography.css';
+@import '../styles/tokens/spacing.css';
+@import '../styles/tokens/base.css';
+@import '../styles/tokens/onboarding.css';
+
+/* Fonts are loaded with a <link> in app/layout.tsx rather than an @import here,
+   so the stylesheet is not blocked on a third-party round trip.
+   src/styles/tokens/fonts.css documents the licensed originals and substitutes. */
+
+body {
+  background: var(--onboarding-bg);
+  font-family: var(--font-body);
+}
+
+/* The design system's :focus-visible outline is right for the page in general,
+   but the fields draw their own ring (border + halo) — see TextField/CodeInput. */
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+}
