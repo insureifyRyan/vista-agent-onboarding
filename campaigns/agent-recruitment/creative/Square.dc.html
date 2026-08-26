@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Instrument+Sans:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #2FC2A8; } a:hover { color: #6FD9C6; }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 1080px; height: 1080px; background: #0A0F0E; overflow: hidden; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <div style="position: absolute; bottom: -300px; left: 50%; transform: translateX(-50%); width: 1000px; height: 760px; background: radial-gradient(ellipse at center, {{accent}} 0%, rgba(10,15,14,0) 64%); opacity: 0.17; pointer-events: none;"></div>
+
+  <svg style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.055; pointer-events: none; mix-blend-mode: overlay;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="grainSq"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" /></filter>
+    <rect width="100%" height="100%" filter="url(#grainSq)" />
+  </svg>
+
+  <div style="position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 100%; box-sizing: border-box; padding: 68px;">
+
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <svg width="40" height="40" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1.5" y="1.5" width="41" height="41" rx="12" stroke="{{accent}}" stroke-width="2.5"/>
+        <path d="M11 28.5C15.5 19 20 14.5 22 14.5C24 14.5 28.5 19 33 28.5" stroke="{{accent}}" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="30.5" r="2.6" fill="{{accent}}"/>
+      </svg>
+      <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 27px; letter-spacing: 0.14em; color: #F4F7F6;">VISTA</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 34px;">
+      <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 92px; line-height: 0.96; letter-spacing: -0.038em; color: #F4F7F6;">Add warranty<br>to your book.<br><span style="color: #6C7B78;">Not to your<br>workload.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12.5L10 17.5L19.5 7" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size: 29px; color: #A8B4B2;">EzLinks integration, live in about a day</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12.5L10 17.5L19.5 7" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size: 29px; color: #A8B4B2;">No contracts, no appointments</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12.5L10 17.5L19.5 7" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size: 29px; color: #A8B4B2;">Clients sign online in under 60 seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px; background: {{accent}}; border-radius: 16px; padding: 28px 40px;">
+        <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 33px; color: #0A0F0E; letter-spacing: -0.015em;">Become a Vista agent</div>
+        <svg width="27" height="27" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 14H21M21 14L15 8M21 14L15 20" stroke="#0A0F0E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div style="text-align: center; font-size: 17px; color: #5C6968;">[LEGAL LINE — underwriter, state availability, licensing disclosure]</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#2FC2A8","options":["#2FC2A8","#4A9EF5","#E0A33E","#C9553F"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#2FC2A8' };
+  }
+}
+</script>
+</body>
+</html>

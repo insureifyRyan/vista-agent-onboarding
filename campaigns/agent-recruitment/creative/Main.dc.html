@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Instrument+Sans:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #2FC2A8; } a:hover { color: #6FD9C6; }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 1080px; height: 1350px; background: #0A0F0E; overflow: hidden; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <div style="position: absolute; top: -180px; left: 50%; transform: translateX(-50%); width: 1100px; height: 900px; background: radial-gradient(ellipse at center, {{accent}} 0%, rgba(10,15,14,0) 62%); opacity: 0.16; pointer-events: none;"></div>
+
+  <svg style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.055; pointer-events: none; mix-blend-mode: overlay;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="grainMain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" /></filter>
+    <rect width="100%" height="100%" filter="url(#grainMain)" />
+  </svg>
+
+  <div style="position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 100%; box-sizing: border-box; padding: 76px 76px 68px 76px;">
+
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1.5" y="1.5" width="41" height="41" rx="12" stroke="{{accent}}" stroke-width="2.5"/>
+        <path d="M11 28.5C15.5 19 20 14.5 22 14.5C24 14.5 28.5 19 33 28.5" stroke="{{accent}}" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="30.5" r="2.6" fill="{{accent}}"/>
+      </svg>
+      <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 30px; letter-spacing: 0.14em; color: #F4F7F6;">VISTA</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 30px; margin-top: 8px;">
+      <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 104px; line-height: 0.96; letter-spacing: -0.038em; color: #F4F7F6; text-wrap: balance;">Sign up Tuesday.<br>Selling Thursday.</div>
+      <div style="font-size: 31px; line-height: 1.45; color: #8B9997; max-width: 800px;">EzLinks integration, live in about a day. No contracts to negotiate. No appointment to wait on.</div>
+    </div>
+
+    <div style="position: relative; align-self: center; width: 660px;">
+      <div style="position: absolute; inset: -50px -30px; background: radial-gradient(ellipse at center, {{accent}} 0%, rgba(10,15,14,0) 70%); opacity: 0.2; border-radius: 40px;"></div>
+      <div style="position: relative; background: linear-gradient(160deg, #17201E 0%, #101715 100%); border: 1px solid rgba(255,255,255,0.09); border-radius: 26px; padding: 40px 42px; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.7);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+          <div style="font-size: 22px; color: #8B9997; letter-spacing: 0.02em;">Client enrollment</div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="8.5" stroke="{{accent}}" stroke-width="1.8"/>
+              <path d="M10 5.5V10L13 12" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <div style="font-size: 22px; color: {{accent}}; font-weight: 500;">0:47</div>
+          </div>
+        </div>
+        <div style="height: 7px; background: rgba(255,255,255,0.09); border-radius: 4px; overflow: hidden; margin-bottom: 34px;">
+          <div style="width: 100%; height: 100%; background: {{accent}}; border-radius: 4px;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%; background: {{accent}}; display: flex; align-items: center; justify-content: center;">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 15.5L13 20.5L22.5 10.5" stroke="#0A0F0E" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 34px; color: #F4F7F6; letter-spacing: -0.02em;">Fully covered</div>
+            <div style="font-size: 22px; color: #8B9997;">Unlimited miles · $100 deductible · Any ASE shop</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 26px;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px; background: {{accent}}; border-radius: 16px; padding: 30px 40px;">
+        <div style="font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 34px; color: #0A0F0E; letter-spacing: -0.015em;">Become a Vista agent</div>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 14H21M21 14L15 8M21 14L15 20" stroke="#0A0F0E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div style="text-align: center; font-size: 17px; line-height: 1.5; color: #5C6968;">[LEGAL LINE — underwriter, state availability, licensing disclosure]</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#2FC2A8","options":["#2FC2A8","#4A9EF5","#E0A33E","#C9553F"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#2FC2A8' };
+  }
+}
+</script>
+</body>
+</html>

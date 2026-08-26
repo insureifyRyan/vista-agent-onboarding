@@ -1,0 +1,12 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",   "x": 0,    "y": 0, "w": 1080, "h": 1350, "title": "Dark 4:5 — speed promise" },
+    { "file": "Light.dc.html",  "x": 1240, "y": 0, "w": 1080, "h": 1350, "title": "Light 4:5 — agent credential" },
+    { "file": "Square.dc.html", "x": 2480, "y": 0, "w": 1080, "h": 1080, "title": "Dark 1:1 — proof stack" }
+  ],
+  "annotations": [
+    { "id": "brand-note", "x": 0, "y": -230, "w": 700, "text": "PLACEHOLDER BRAND: the mark and the teal accent are stand-ins — Vista's real logo and brand color drop in here. Accent is a tweak chip on every board, so try a color without touching the layout." },
+    { "id": "legal-note", "x": 1240, "y": -230, "w": 700, "text": "Every board carries a bracketed legal line. Warranty/VSC advertising is state-regulated — compliance fills this before anything runs." }
+  ],
+  "launch": { "view": "canvas" }
+}

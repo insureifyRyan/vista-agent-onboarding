@@ -3,3 +3,6 @@
 outputs/
 __pycache__/
 *.pyc
+
+# Seeded design-canvas build output — regenerate from the .dc.html sources
+campaigns/**/creative/*-ads.html
