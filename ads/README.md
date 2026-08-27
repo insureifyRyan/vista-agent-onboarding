@@ -164,6 +164,23 @@ channel.
 
 "Available in all states except California" is a licensing fact. Leave it.
 
+## Presentation lifts
+
+Four adjustments sit on top of the approved artwork. They are driven by
+structural hooks written into the canvases at `data-vw-ground="dark|bright"`, so
+nothing lands on a frame where it would be wrong — the bright-ground frames keep
+their flat mark on a white tile, and only the dark grounds get the glows.
+
+| Lift | What it does | Where |
+|---|---|---|
+| Cyan bloom | A wide, low-opacity `text-shadow` so the accent reads luminous rather than printed on. It lightens the surround, not the glyphs. | Display cyan on dark grounds only |
+| Mark separation | A cyan drop shadow plus a dark one, so the mark's cyan wedge stops merging into `#0B1024` at feed scale and the purple wedge stays anchored | Dark grounds only |
+| CTA body | A lit top edge and a cast shadow in the button's own hue, so it reads as a physical control | All 17 CTAs, softer on bright grounds |
+| Tighter display tracking | A further `0.006em` on type at 96px and above, where the drawn tracking still read loose | 18 headlines |
+
+The small inline cyan `<b>` words inside body copy are deliberately left flat.
+At that size a bloom muddies the letterforms instead of lifting them.
+
 ## Rendering notes
 
 The export applies `-webkit-font-smoothing: antialiased` and
