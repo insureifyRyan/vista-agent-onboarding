@@ -35,9 +35,40 @@ Every CTA-bearing frame points at the same place, with its own `utm_content`:
 https://www.kovara.ai/onboarding?utm_source=meta&utm_medium=paid_social&utm_campaign=agent_signup&utm_content=<FRAME_ID>
 ```
 
-`utm_content` is the only thing that tells these nineteen apart in reporting —
-set it per creative when you build the ad, and don't let Meta's URL builder
-overwrite it.
+### Set it once, not twenty-one times
+
+Do not hand-enter twenty-one URLs. Meta fills `utm_content` per ad from a
+dynamic parameter, so this goes in the **URL parameters** field once at the ad
+set or campaign level:
+
+```
+utm_source=meta&utm_medium=paid_social&utm_campaign=agent_signup&utm_content={{ad.name}}
+```
+
+Then name each ad by its frame id — `A1`, `B6`, `V2`. Meta substitutes the name
+per ad automatically. Keep the names free of spaces and punctuation, because
+`{{ad.name}}` is URL-encoded, and a space becomes `%20` in your reports.
+
+Other dynamic parameters available if you want them: `{{ad.id}}`,
+`{{adset.name}}`, `{{campaign.name}}`, `{{placement}}`, `{{site_source_name}}`.
+
+### Why bother, when Meta already reports per ad
+
+Meta's own reporting gives you impressions, clicks, CTR and spend broken out by
+ad, with no UTMs at all. For ranking creative on click performance that is
+enough, and this is not needed.
+
+What it does not give you is what happened after the click. Meta knows about
+signups only if the pixel is installed and fires, and if it survives iOS ATT
+opt-outs, ad blockers and cross-device journeys. The onboarding app has no idea
+which creative produced any given agent unless `utm_content` arrives in the URL
+— which is exactly why the app reads it on first load, holds it through the
+email round trip, and writes it onto the agent record.
+
+So the two answer different questions. Meta tells you which creative earns
+clicks. `utm_content` tells you which creative produces agents who finish signup
+and connect an AMS. They do not always rank the same, and the second one is the
+one worth spending against.
 
 ## The set
 
