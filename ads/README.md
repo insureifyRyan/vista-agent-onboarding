@@ -86,29 +86,66 @@ do-not-write list.
 
 ## Compliance
 
-The block on every CTA-bearing frame reads:
+Every entity name, address, phone number and licence number comes from the
+executed contract form (Elevate Platinum VSC, `AAS VSC 1 11-2022`), not from the
+design handoff. `src/lib/compliance.ts` is the source; `tests/compliance.test.ts`
+pins each value and asserts all seventeen CTA-bearing frames carry the block
+verbatim, so the art and the landing page cannot drift apart.
 
-> Insureify AI, Inc. DBA Kovara AI. Vehicle service contracts are not insurance;
-> obligations insured by Old Republic Insurance Company. Coverage and eligibility
-> subject to contract terms and exclusions. License verification required to sell.
-> All states except California. Administered by Ascent Administration, Mesa, AZ.
+The block on every CTA-bearing frame:
 
-This is the same text the onboarding page carries, minus one sentence: the page
-adds *"Eligible-vehicle counts are calculated from your own book at connection."*
-because it displays a count and an ad does not. `tests/compliance.test.ts` asserts
-all seventeen frames carry it verbatim and that it still matches the page, so the
-art and the landing page cannot drift apart.
+> Insureify AI, Inc. DBA Kovara AI. Vehicle service contracts are not insurance,
+> a warranty, or a guarantee. Administrator and obligor: Ascent Administration
+> Services, LLC, Tempe, AZ; administrator and obligor vary by state. Obligations
+> are insured under a contractual liability insurance policy issued by Old
+> Republic Insurance Company. Coverage and eligibility subject to contract terms
+> and exclusions. Producer license verification required to sell. Available in
+> all states except California.
+
+The onboarding page adds one sentence — *"Eligible-vehicle counts are calculated
+from your own book at connection."* — because it displays a count and an ad does
+not.
 
 The three Reels cuts carry the short line instead — *"Vehicle service contracts
 are not insurance. Available in all states except California. Full terms in the
 caption."* — which is why **a Reels cut must never run with a truncated caption**.
 
-### Still open for counsel
+### What the contract corrected
 
-The disclosure names an **insurer** (Old Republic) and an **administrator**
-(Ascent) but no **obligor** — the entity actually on the hook for the contract.
-Most VSC disclosure regimes want that named. It is not in the handoff and is not
-something to infer, so it needs an answer from counsel along with confirmation of
-the exact Old Republic underwriting entity name. If a sentence is added, put it in
-`src/lib/compliance.ts` and re-run the export; the page and all nineteen creatives
-update together.
+| Was | Is |
+|---|---|
+| "Administered by Ascent Administration, Mesa, AZ" | **Ascent Administration Services, LLC**, 360 South Smith Road, **Tempe**, AZ 85281, 866-660-7003 |
+| No obligor named | Ascent is the **administrator and obligor** |
+| "obligations insured by Old Republic Insurance Company" | obligations are insured **under a contractual liability insurance policy issued by** Old Republic — Old Republic insures the obligor, it is not the obligor (except in Florida) |
+| "not insurance" | "not insurance, **a warranty, or a guarantee**" — the contract's own front-page wording |
+
+### Where the parties change
+
+Old Republic runs three states under different entities. Any state-specific
+disclosure must use the right one rather than defaulting to Ascent:
+
+| State | Role | Entity |
+|---|---|---|
+| CA | Administrator & obligor | Old Republic Insured Automotive Services, Inc., 8282 S Memorial Dr., Ste. 202, Tulsa, OK 74133 · 800-331-3780 · Lic. 0C79822 |
+| FL | Administrator | Minnehoma Automobile Association, Inc., P.O. Box 35008, Tulsa, OK 74153-0008 · 800-644-9680 · Lic. 60033 |
+| FL | Obligor | Old Republic Insurance Company, P.O. Box 35008, Tulsa, OK 74153-0008 · 800-644-9680 |
+| NY | Administrator & obligor | ORIAS Warranty Services, 8282 S Memorial Dr., Ste. 202, Tulsa, OK 74133 · 800-331-3780 |
+
+Direct-claim right (contract VI(l)): if the obligor fails to pay or provide
+service within sixty days of proof of loss, the buyer may claim directly against
+Old Republic Insurance Company, P.O. Box 35008, Tulsa, OK 74153-0008,
+(800) 331-3780.
+
+### One contradiction to resolve
+
+**The creatives say "Available in all states except California." The contract
+does not exclude California** — it carries a full California disclosure section,
+names a California-approved administrator and obligor (Old Republic Insured
+Automotive Services, Inc., licence 0C79822), and points buyers to the California
+Department of Insurance.
+
+So either the Vista program is deliberately not offered in California for a
+licensing or appointment reason the contract does not speak to, or the exclusion
+is stale and nineteen creatives are turning away a state we can actually sell in.
+That is a business answer, not one to infer from the document — it is the last
+open item on this copy.
