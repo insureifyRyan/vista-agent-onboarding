@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "jobs:work": "node --experimental-strip-types scripts/work-jobs.mts",
     "pipedrive:fields": "node --experimental-strip-types scripts/pipedrive-fields.mts",
+    "links:check": "node --experimental-strip-types scripts/check-links.mts",
     "pipedrive:setup": "node --experimental-strip-types scripts/pipedrive-setup.mts"
   },
   "dependencies": {

@@ -181,9 +181,9 @@ anywhere. Silence on price reads as a fee nobody is mentioning. Cost and risk
 framing is not an income claim, so it clears the Meta Employment category where
 "earn $X" would not.
 
-> ⚠️ **Confirm before spend.** These frames assert there is no platform fee, no
-> minimum, and no carrier appointment requirement. That is a commercial claim on
-> a paid ad — verify all three are literally true of the agency terms.
+> ✅ **Confirmed 2026-08-27:** no fee and no minimums to get started. If that
+> ever changes, these two frames and their captions change with it — the claim
+> is in the artwork, not just the caption, so it needs a re-export.
 
 **A7 / B7 — "Every auto quote gets a VSC quote."** The strongest hook available:
 the agent does nothing and a VSC quote appears alongside the auto quote they were
@@ -231,3 +231,18 @@ limiting asset in the set and the only thing stopping these being pin-sharp
 throughout. A vector or higher-resolution file from Old Republic would fix it
 outright; do not trace or redraw the mark, it is their trademark and an
 approximate reproduction is worse than a slightly soft accurate one.
+
+## Monthly destination check
+
+The destination lives in Meta's Ads Manager, not in anything this repo deploys.
+If the Kovara onboarding route moves, or starts dropping query params, nothing
+here breaks — the ads quietly stop converting, or stop being attributable, and
+nobody finds out until someone reads a report.
+
+`.github/workflows/link-check.yml` runs on the 1st of each month (and on demand
+via *Run workflow*). It checks the bare URL plus all twenty-three per-frame UTM
+variants and fails the job if any is unreachable, so a broken link surfaces as a
+red build and a notification rather than as a slow bleed.
+
+Run it locally any time with `npm run links:check`. Point it elsewhere with
+`ONBOARDING_URL=https://staging.example.com/onboarding npm run links:check`.

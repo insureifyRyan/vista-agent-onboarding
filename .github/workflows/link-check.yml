@@ -1,0 +1,22 @@
+# The ad destination is configured in Meta's Ads Manager, not in anything this
+# repo deploys — so if the Kovara onboarding route moves or starts dropping
+# query params, nothing here fails. The ads just quietly stop converting, or
+# stop being attributable. This is the thing that notices.
+name: Ad destination check
+
+on:
+  schedule:
+    # 14:00 UTC on the 1st of each month
+    - cron: '0 14 1 * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the onboarding URL and every per-frame UTM variant
+        run: node --experimental-strip-types scripts/check-links.mts
