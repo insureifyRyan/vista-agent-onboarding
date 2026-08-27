@@ -55,10 +55,10 @@ Sizes below are the 1x set; the 2x masters are double in both dimensions.
 | B3 | 1080×1350 | 4:5 | IG + FB feed | B3 — Three nos |
 | B4 | 1080×1350 | 4:5 | IG + FB feed | A5 / B4 — Coverage and carrier |
 | B5 | 1080×1350 | 4:5 | IG + FB feed | A2 / B5 — AI selling from the AMS |
-| A6 | 1080×1350 | 4:5 | IG + FB feed | **A6 / B6 — No cost to add** (caption needed) |
-| A7 | 1080×1350 | 4:5 | IG + FB feed | **A7 / B7 — Every auto quote** (caption needed) |
-| B6 | 1080×1350 | 4:5 | IG + FB feed | **A6 / B6 — No cost to add** (caption needed) |
-| B7 | 1080×1350 | 4:5 | IG + FB feed | **A7 / B7 — Every auto quote** (caption needed) |
+| A6 | 1080×1350 | 4:5 | IG + FB feed | A6 / B6 — No cost to add |
+| A7 | 1080×1350 | 4:5 | IG + FB feed | A7 / B7 — Every auto quote |
+| B6 | 1080×1350 | 4:5 | IG + FB feed | A6 / B6 — No cost to add |
+| B7 | 1080×1350 | 4:5 | IG + FB feed | A7 / B7 — Every auto quote |
 | S1 | 1080×1080 | 1:1 | Right column, Marketplace, Audience Network | A1 / B1 — Speed |
 | S2 | 1080×1080 | 1:1 | Right column, Marketplace, Audience Network | A3 — Dealer markup |
 | S3 | 1080×1080 | 1:1 | Right column, Marketplace, Audience Network | A5 / B4 — Coverage and carrier |

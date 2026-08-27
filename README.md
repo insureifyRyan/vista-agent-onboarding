@@ -1,7 +1,18 @@
 # Vista agent onboarding
 
-The destination for the Vista agent-recruitment paid-social creatives:
-`kovara.ai/onboarding`. Four steps — name and email, email verification, AMS
+**This app is a reference implementation, not the live destination.** The
+creatives point at `kovara.ai/onboarding` in the existing Kovara app, which
+already runs steps 1 and 2; step 3 (the AMS selector) is the new capability and
+the reason for this work. This repo was empty when the flow was built, so the
+whole thing was built standalone against the spec — port from it rather than
+deploying it.
+
+What ports cleanly: `src/lib/ams/catalog.ts` (the sixteen options and the branch
+logic), `src/lib/compliance.ts` (transcribed from the executed contract),
+`src/lib/ams/copy.ts` (the approved panel copy), and the Pipedrive sync design in
+`src/lib/pipedrive/`.
+
+Four steps — name and email, email verification, AMS
 connection, and a licensing handoff — plus the Pipedrive-backed AMS integration
 waitlist behind step 3.
 

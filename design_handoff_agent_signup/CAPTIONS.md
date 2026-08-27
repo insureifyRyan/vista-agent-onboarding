@@ -15,7 +15,7 @@ Sixty seconds. That is the whole sign-up.
 
 No appointment with a rep. No F&I department. No new software to learn. You add vehicle service contracts to the products your clients already buy from you, and your clients check out online in about thirty seconds.
 
-Vista is an agent-exclusive program — it is not sold at the dealership, and it is not sold direct.
+Vista is an agency-exclusive program — it is not sold at the dealership, and it is not sold direct.
 
 Start at www.kovara.ai
 
@@ -82,7 +82,7 @@ www.kovara.ai
 
 You already write their auto. You already write their home.
 
-Vista adds a vehicle service contract to the suite — an agent-exclusive program, so your client cannot get it anywhere but from an agency like yours.
+Vista adds a vehicle service contract to the suite — an agency-exclusive program, so your client cannot get it anywhere but from an agency like yours.
 
 www.kovara.ai
 
@@ -97,6 +97,32 @@ Same comprehensive coverage your client would be sold in the finance office, bou
 www.kovara.ai
 
 *Savings vary by vehicle, term and coverage.*
+
+---
+
+## A6 / B6 — No cost to add
+
+There is no fee to add Vista to your agency.
+
+No platform fee. No minimums to hit. No carrier appointments to chase. You add the product line, and you sell it when it fits the client in front of you.
+
+Vista is an agency-exclusive program — it is not sold at the dealership, and it is not sold direct.
+
+www.kovara.ai
+
+*Producer license verification is required before you can sell.*
+
+---
+
+## A7 / B7 — Every auto quote
+
+Your client asks for an auto quote. They get a vehicle service contract quote with it.
+
+Our AI reads the vehicle out of the AMS you already run, prices the coverage, presents it, and lets your client buy online. You are not building quotes by hand and you are not chasing paperwork.
+
+www.kovara.ai
+
+*Live today for EZLynx and supported Applied Systems platforms; other systems join the integration waitlist.*
 
 ---
 
