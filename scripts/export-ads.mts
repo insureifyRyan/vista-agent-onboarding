@@ -21,9 +21,21 @@ import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
+
+/**
+ * Supersampling factor. 1 gives the spec's true pixel size (1080 wide); 2 gives a
+ * 2x master, which is what Meta wants uploaded — it downsamples better than we
+ * can, and the extra pixels show on a high-DPI phone.
+ *
+ * The Vista mark is a 1554x1322 source rendered at ~109px, so it has ample
+ * headroom at 2x. The Old Republic mark does not: it is 205x58 and already
+ * renders at 72% of native, so at 2x it is upscaled and softens. That asset is
+ * the ceiling on this set — see ads/README.md.
+ */
+const SCALE = Number(process.env.EXPORT_SCALE ?? 1);
 const SOURCE = join(ROOT, 'design_handoff_agent_signup', 'AgentSignupAds.dc.html');
-const OUT = join(ROOT, 'ads');
-const FONT_DIR = join(OUT, 'fonts');
+const OUT = SCALE === 1 ? join(ROOT, 'ads') : join(ROOT, 'ads', `${SCALE}x`);
+const FONT_DIR = join(ROOT, 'ads', 'fonts');
 
 /** Held back from the launch set. */
 const EXCLUDED = new Set(['P1']);
@@ -87,17 +99,40 @@ const ISOLATE = (index: number) => {
 mkdirSync(OUT, { recursive: true });
 const fontCss = localFontCss();
 console.log(fontCss ? 'using local fonts from ads/fonts' : 'using Google Fonts (needs network)');
+console.log(`exporting at ${SCALE}x -> ${OUT}`);
 
 // CHROMIUM_PATH lets this run where a browser is already installed at a known
 // location instead of Playwright's own download (CI images, sandboxes).
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_PATH || undefined,
 });
-const page = await browser.newPage({ viewport: { width: 1600, height: 1200 }, deviceScaleFactor: 1 });
+const page = await browser.newPage({
+  viewport: { width: 1600, height: 1200 },
+  deviceScaleFactor: SCALE,
+});
+
+/**
+ * Rendering hints applied to every frame.
+ *
+ * `antialiased` turns off subpixel AA, which is what you want for an image that
+ * will be composited on unknown backgrounds — subpixel fringing survives the
+ * export as coloured edges. `geometricPrecision` stops Chromium rounding glyph
+ * advances to whole pixels, so tracked display type keeps its intended spacing
+ * instead of drifting.
+ */
+const RENDER_HINTS = `
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+  }
+  img { image-rendering: high-quality; }
+`;
 
 async function load(): Promise<void> {
   await page.goto(`file://${SOURCE}`, { waitUntil: 'load' });
   if (fontCss) await page.addStyleTag({ content: fontCss });
+  await page.addStyleTag({ content: RENDER_HINTS });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(250);
 }
@@ -127,12 +162,12 @@ for (const frame of frames) {
 
   exported.push({
     id: frame.id,
-    width: frame.width,
-    height: frame.height,
+    width: frame.width * SCALE,
+    height: frame.height * SCALE,
     label: frame.label ?? '',
     file: `${frame.id}.png`,
   });
-  console.log(`exported ${frame.id}  ${frame.width}×${frame.height}`);
+  console.log(`exported ${frame.id}  ${frame.width * SCALE}×${frame.height * SCALE}`);
 }
 
 writeFileSync(join(OUT, 'frames.json'), JSON.stringify(exported, null, 2) + '\n');

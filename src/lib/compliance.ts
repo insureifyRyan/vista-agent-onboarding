@@ -80,6 +80,19 @@ export const STATE_ENTITIES: Record<string, StateEntity[]> = {
 };
 
 /**
+ * Why "all states except California" is correct, despite the contract carrying a
+ * full California section:
+ *
+ * The contract's California provisions assume a dealer is selling the contract.
+ * California requires a dealer licence to sell a vehicle service contract, and
+ * Kovara does not hold one — the agents we recruit are insurance producers, not
+ * licensed dealers. So the California entity (Old Republic Insured Automotive
+ * Services, Inc.) is real but not a route available to this channel.
+ *
+ * The exclusion is a licensing fact, not a stale line. Leave it in place.
+ */
+
+/**
  * The disclosure carried on every creative.
  *
  * "not insurance, a warranty, or a guarantee" is the contract's own front-page

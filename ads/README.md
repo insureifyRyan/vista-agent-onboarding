@@ -1,7 +1,15 @@
 # Agent sign-up creatives
 
-Nineteen finished creatives, exported at true pixel size from
-`design_handoff_agent_signup/AgentSignupAds.dc.html`. Static images — upload to
+Nineteen finished creatives, exported from
+`design_handoff_agent_signup/AgentSignupAds.dc.html` in two sets:
+
+- **`ads/2x/` — upload these.** 2160x2700 / 2160x2160 / 2160x3840. Meta wants the
+  highest resolution available and downsamples better than we can; at the same
+  physical size the type is visibly crisper than the 1x set.
+- **`ads/` — 1x, true pixel size.** 1080 wide, matching the handoff spec. Use it
+  where something insists on exact placement dimensions.
+
+Both carry identical artwork and copy. Static images — upload to
 Meta with the destination URL below. No engineering needed to run them; the only
 app-side dependency is UTM capture, which is already live on `/onboarding`.
 
@@ -10,6 +18,8 @@ Regenerate with:
 ```bash
 node --experimental-strip-types scripts/export-ads.mts
 ```
+
+Set `EXPORT_SCALE=2` for the 2x masters; the default is 1x.
 
 It needs a Chromium (`npx playwright install chromium`, or set `CHROMIUM_PATH`
 to one already on disk) and reaches fonts.googleapis.com for Montserrat and
@@ -30,6 +40,8 @@ set it per creative when you build the ad, and don't let Meta's URL builder
 overwrite it.
 
 ## The set
+
+Sizes below are the 1x set; the 2x masters are double in both dimensions.
 
 | Frame | Size | Ratio | Placement | Caption in `CAPTIONS.md` |
 |---|---|---|---|---|
@@ -74,6 +86,8 @@ remove it from `EXCLUDED` once the photo is in.
 - **Claim-specific qualifiers sit next to their claim**, not in the footer block:
   savings claims, AMS availability, and "60 seconds" timing each carry their own.
 - **The Old Republic trust mark appears on every creative.**
+- **The pill reads "Insurance Agency Exclusive VSC program"** — the audience is
+  agencies, not individual agents.
 - **On the bright grounds the Vista mark sits on a white tile** — its cyan wedge
   disappears otherwise.
 
@@ -136,16 +150,39 @@ service within sixty days of proof of loss, the buyer may claim directly against
 Old Republic Insurance Company, P.O. Box 35008, Tulsa, OK 74153-0008,
 (800) 331-3780.
 
-### One contradiction to resolve
+### Why California is excluded
 
-**The creatives say "Available in all states except California." The contract
-does not exclude California** — it carries a full California disclosure section,
-names a California-approved administrator and obligor (Old Republic Insured
-Automotive Services, Inc., licence 0C79822), and points buyers to the California
-Department of Insurance.
+The contract carries a full California section and names a California-approved
+administrator and obligor, which looks at first like the exclusion is stale. It is
+not.
 
-So either the Vista program is deliberately not offered in California for a
-licensing or appointment reason the contract does not speak to, or the exclusion
-is stale and nineteen creatives are turning away a state we can actually sell in.
-That is a business answer, not one to infer from the document — it is the last
-open item on this copy.
+Those California provisions assume **a dealer** is selling the contract.
+California requires a **dealer licence** to sell a vehicle service contract, and
+Kovara does not hold one — the agents this campaign recruits are insurance
+producers. The California entity is real, but it is not a route open to this
+channel.
+
+"Available in all states except California" is a licensing fact. Leave it.
+
+## Rendering notes
+
+The export applies `-webkit-font-smoothing: antialiased` and
+`text-rendering: geometricPrecision`. The first turns off subpixel antialiasing,
+which would otherwise bake coloured fringes into the edges of glyphs — invisible
+on the screen it was tuned for, visible once the image is composited somewhere
+else. The second stops Chromium rounding glyph advances to whole pixels, so the
+tracked display type keeps the spacing it was drawn with.
+
+### The one asset that caps sharpness
+
+| Asset | Source | Rendered at | Headroom |
+|---|---|---|---|
+| `vista-mark.png` | 1554x1322 | ~109px tall | ~12x — sharp at any export scale |
+| `old-republic-logo.png` | **205x58** | 42px tall | none — already 72% of native at 1x |
+
+At 2x the Old Republic mark is upscaled past its native resolution. It still
+looks better than the 1x version at the same display size, but it is the
+limiting asset in the set and the only thing stopping these being pin-sharp
+throughout. A vector or higher-resolution file from Old Republic would fix it
+outright; do not trace or redraw the mark, it is their trademark and an
+approximate reproduction is worse than a slightly soft accurate one.
