@@ -80,7 +80,16 @@ describe('the states where a different entity applies', () => {
 
 describe('the disclosure blocks', () => {
   it('puts the ad block on every CTA-bearing frame', () => {
-    expect(ADS_HTML.split(AD_DISCLOSURE).length - 1).toBe(17);
+    // Derived, not a fixed count: the invariant is that every frame carrying a
+    // CTA also carries the disclosure. Hard-coding the number meant adding a
+    // frame failed the test for the wrong reason.
+    // Match the attribute on an element, not the `[data-vw-cta]` selectors in
+    // the stylesheet, which a plain substring count picks up too.
+    const ctaFrames = (ADS_HTML.match(/<[a-z]+ data-vw-cta\b/g) ?? []).length;
+    const disclosures = ADS_HTML.split(AD_DISCLOSURE).length - 1;
+
+    expect(ctaFrames).toBeGreaterThan(0);
+    expect(disclosures).toBe(ctaFrames);
   });
 
   it('gives the Reels cuts the short line, which defers to the caption', () => {
