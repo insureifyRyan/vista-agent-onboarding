@@ -35,6 +35,20 @@
     "file": "A5.png"
   },
   {
+    "id": "A6",
+    "width": 1080,
+    "height": 1350,
+    "label": "A6 · No cost to add",
+    "file": "A6.png"
+  },
+  {
+    "id": "A7",
+    "width": 1080,
+    "height": 1350,
+    "label": "A7 · Every auto quote",
+    "file": "A7.png"
+  },
+  {
     "id": "B1",
     "width": 1080,
     "height": 1350,
@@ -68,6 +82,20 @@
     "height": 1350,
     "label": "B5 · Three-step AI flow",
     "file": "B5.png"
+  },
+  {
+    "id": "B6",
+    "width": 1080,
+    "height": 1350,
+    "label": "B6 · No cost to add",
+    "file": "B6.png"
+  },
+  {
+    "id": "B7",
+    "width": 1080,
+    "height": 1350,
+    "label": "B7 · Every auto quote",
+    "file": "B7.png"
   },
   {
     "id": "S1",

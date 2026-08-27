@@ -1,6 +1,6 @@
 # Agent sign-up creatives
 
-Nineteen finished creatives, exported from
+Twenty-three finished creatives, exported from
 `design_handoff_agent_signup/AgentSignupAds.dc.html` in two sets:
 
 - **`ads/2x/` — upload these.** 2160x2700 / 2160x2160 / 2160x3840. Meta wants the
@@ -55,6 +55,10 @@ Sizes below are the 1x set; the 2x masters are double in both dimensions.
 | B3 | 1080×1350 | 4:5 | IG + FB feed | B3 — Three nos |
 | B4 | 1080×1350 | 4:5 | IG + FB feed | A5 / B4 — Coverage and carrier |
 | B5 | 1080×1350 | 4:5 | IG + FB feed | A2 / B5 — AI selling from the AMS |
+| A6 | 1080×1350 | 4:5 | IG + FB feed | **A6 / B6 — No cost to add** (caption needed) |
+| A7 | 1080×1350 | 4:5 | IG + FB feed | **A7 / B7 — Every auto quote** (caption needed) |
+| B6 | 1080×1350 | 4:5 | IG + FB feed | **A6 / B6 — No cost to add** (caption needed) |
+| B7 | 1080×1350 | 4:5 | IG + FB feed | **A7 / B7 — Every auto quote** (caption needed) |
 | S1 | 1080×1080 | 1:1 | Right column, Marketplace, Audience Network | A1 / B1 — Speed |
 | S2 | 1080×1080 | 1:1 | Right column, Marketplace, Audience Network | A3 — Dealer markup |
 | S3 | 1080×1080 | 1:1 | Right column, Marketplace, Audience Network | A5 / B4 — Coverage and carrier |
@@ -163,6 +167,30 @@ producers. The California entity is real, but it is not a route open to this
 channel.
 
 "Available in all states except California" is a licensing fact. Leave it.
+
+## The two signup-driver frames
+
+These four are new, and they exist because the ads carry the whole persuasion
+load — traffic goes straight to the Kovara app signup, with no landing page in
+between. The original ten described the product well but left two questions
+that a cold agent answers with "no": *what does this cost me*, and *what do I
+actually have to do*.
+
+**A6 / B6 — "No cost to add. No minimums."** The set had no economics language
+anywhere. Silence on price reads as a fee nobody is mentioning. Cost and risk
+framing is not an income claim, so it clears the Meta Employment category where
+"earn $X" would not.
+
+> ⚠️ **Confirm before spend.** These frames assert there is no platform fee, no
+> minimum, and no carrier appointment requirement. That is a commercial claim on
+> a paid ad — verify all three are literally true of the agency terms.
+
+**A7 / B7 — "Every auto quote gets a VSC quote."** The strongest hook available:
+the agent does nothing and a VSC quote appears alongside the auto quote they were
+already running. Carries the AMS qualifier next to the claim, since it depends on
+the integration being live for that platform.
+
+Both run in each direction so they can be tested head to head.
 
 ## Presentation lifts
 
